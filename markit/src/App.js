@@ -23,8 +23,17 @@ function App() {
         <h3>
           {data ? "React application running on NodeJS successfully!" : "NodeJS is down!"}
         </h3>
+        <ul>
+        <h4>Members:</h4>
+          <li>Rashmi Chandy</li>
+          <li>Kethan Kumar Nasapu</li>
+          <li>Amelia Hernandez Beltran</li>
+          <li>Theresa Marie D'sylva</li>
+          <li>Johanan Abhishek Prabhurai</li>
+        </ul>
       </header>
     </div>
+
   );
 }
 
