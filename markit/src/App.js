@@ -28,6 +28,7 @@ function App() {
           <li>Rashmi Chandy</li>
           <li>Kethan Kumar Nasapu</li>
           <li>Amelia Hernandez Beltran</li>
+          <li>Theresa Marie Dsylva</li>
         </ul>
       </header>
     </div>
