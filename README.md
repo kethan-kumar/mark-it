@@ -1,7 +1,7 @@
 # Advanced Web Services (CSCI5709)
 
 ### Our Application: [MarkIT](https://dal-markit.herokuapp.com/)
-### Repository URL: https://github.com/csci5709-web-dev/group2/tree/rashmi-chandy
+### Repository URL: https://github.com/csci5709-web-dev/group2/
 ### Clone Repository: https://github.com/csci5709-web-dev/group2.git
 
 
@@ -13,12 +13,12 @@
 
 ## Authors
 
-* Amelia Hernandez Beltran (email@dal.ca) 
-* Ananthi Thiagarajan Subashini (email@dal.ca) - 
-* Johanan Abhishek Prabhurai (email@dal.ca) 
+* Amelia Hernandez Beltran (am629736@dal.ca) 
+* Ananthi Thiagarajan Subashini (an203108@dal.ca)
+* Johanan Abhishek Prabhurai (jh416787@dal.ca)
 * Kethan Kumar Nasapu (kethan@dal.ca) 
 * Rashmi Chandy (rs682521@dal.ca) 
-* Theresa Maria D’Sylva
+* Theresa Maria D’Sylva (th424643@dal.ca)
 
 
 ## Getting Started
@@ -35,15 +35,17 @@ Node.js
 * cd to root directory which has the package.json file
 * Install the node modules: npm install
 * Start the Node server: npm start 
-* Change the directory to markit to run the front end application
 * Open a new terminal 
+* Change the directory to markit to run the front end application
 * Install the node modules: npm install
 * Start the server: npm start 
-* Open http://localhost:3000/ to vieww the application
+* Open http://localhost/ to view the application
 
 ## Deployment
+Automatic deployment configured on heroku. 
+Branch deployed: main
 
-To deploy application to heroku 
+To manually deploy application to heroku 
 * Commit changes and push to repository 
 * set git remote heroku to https://github.com/csci5709-web-dev/group2.git
 * git push heroku main
