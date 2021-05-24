@@ -52,7 +52,9 @@ To manually deploy application to heroku
 
 ## Built With
 
+```
 npm run build
+```
 
 ## Instructors and TAs
 
