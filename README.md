@@ -7,7 +7,6 @@
 
 # Overview
 * A sample react application running on NodeJS. Receives some data from backend NodeJS server and displays it on the frontend.
-=======
 
 # Tutorial 2 Code Management and Deployment
 
