@@ -30,6 +30,7 @@ function App() {
           <li>Amelia Hernandez Beltran</li>
           <li>Theresa Marie D'sylva</li>
           <li>Johanan Abhishek Prabhurai</li>
+		  <li>Ananthi Thiagarajan Subashini</li>
         </ul>
       </header>
     </div>
