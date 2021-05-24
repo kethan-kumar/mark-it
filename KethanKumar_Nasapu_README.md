@@ -1,6 +1,8 @@
 # Advanced Web Services (CSCI5709)
 
-### Our Application: [MarkIT](https://dal-markit.herokuapp.com/)
+### Our Application: 
+- [MarkIT](https://dal-markit.herokuapp.com/)
+- [Git repo](https://github.com/csci5709-web-dev/group2)
 
 ## Instructors and TAs
 - Gabriella Mosquera
