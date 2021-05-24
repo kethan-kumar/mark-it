@@ -27,6 +27,7 @@ function App() {
         <h4>Members:</h4>
           <li>Rashmi Chandy</li>
           <li>Kethan Kumar Nasapu</li>
+          <li>Amelia Hernandez Beltran</li>
         </ul>
       </header>
     </div>
