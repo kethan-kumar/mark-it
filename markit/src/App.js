@@ -29,6 +29,7 @@ function App() {
           <li>Kethan Kumar Nasapu</li>
           <li>Amelia Hernandez Beltran</li>
           <li>Theresa Marie D'sylva</li>
+          <li>Johanan Abhishek Prabhurai</li>
         </ul>
       </header>
     </div>
