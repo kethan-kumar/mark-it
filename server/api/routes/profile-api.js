@@ -30,25 +30,6 @@ router.put('/update-user', (req, res) => {
         });
 });
 
-// router.put('/update-profile', (req, res) => {
-//     console.log('Profile update API');
-
-//     const filter = req.body.email;
-//     const update = req.body;
-
-//     //Update user profile
-//     ProfileUpdate.findOneAndUpdate(filter, update, { new: true })
-//         .then((results) => {
-//             res.status(200).json({
-//                 message: 'Profile updated successfully!',
-//             });
-//         }).catch((err) => {
-//             res.status(500).json({
-//                 message: 'Internal Server Error',
-//             });
-//         });
-// });
-
 //Update user profile details
 router.post('/user-details', (req, res) => {
     console.log('Find Profile API');

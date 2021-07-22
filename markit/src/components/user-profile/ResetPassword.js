@@ -190,8 +190,6 @@ function ResetPassword() {
             verifyOTP();
         }
         if (otpVerified) {
-            console.log('PPPPPPPPPP:' + password);
-            console.log('CCCCCCCCCC:' + confirmPassword);
             if (!password || !confirmPassword) {
                 setresetAlert(true);
             } else {
