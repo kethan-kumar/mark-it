@@ -8,6 +8,8 @@ import Home from "./components/user-profile/Home";
 import { Switch, Route } from "react-router-dom";
 import { AppBar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import Course from './components/courses/Course';
+import CourseDetail from './components/courses/CourseDetail';
 
 const useStyles = makeStyles((theme) => ({
   margin: {
@@ -42,6 +44,14 @@ function App() {
         <Route path="/reset">
           <ResetPassword></ResetPassword>
         </Route>
+        <Route
+            exact path={"/courses"}
+            component={() => <Course />}
+          />
+          <Route
+            exact path={"/courses/:id"}
+            component={() => <CourseDetail />}
+          />
         <Route>
           <h1>Invalid URL</h1>
         </Route>

@@ -9,6 +9,9 @@ const login_route = require('./api/routes/login-api');
 const profile_route = require('./api/routes/profile-api');
 const reset_route = require('./api/routes/send-email-api');
 const rootpath = "/api";
+const course_route = require('./api/routes/course');
+const course_schedule_route = require('./api/routes/courseSchedule');
+const collaborator_route = require('./api/routes/collaborator');
 
 app.use(cors());
 
@@ -42,3 +45,9 @@ app.use(rootpath + "/login", login_route);
 app.use(rootpath + "/profile", profile_route);
 
 app.use(rootpath + "/reset", reset_route);
+
+app.use(rootpath +'/course', course_route);
+
+app.use(rootpath +'/schedule', course_schedule_route);
+
+app.use(rootpath +'/collaborator', collaborator_route);

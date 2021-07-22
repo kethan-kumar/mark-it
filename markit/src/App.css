@@ -40,3 +40,114 @@
 .hidden {
   display: none;
 }
+
+
+.side-bar{
+  align-items: flex-end;
+  color: black;
+  flex-grow: 1;
+  text-align: end;
+}
+
+
+.component-bar {
+  width: 100%;
+  background-color: #1A186B;
+}
+
+.component-bar-space {
+  height: 10px;
+  width: 100%;
+  border-radius: 23px;
+}
+
+.button-group-color {
+  background-color: white;
+}
+
+.search-bar-section{
+  margin-bottom: 10px;
+    max-width: 500px;
+    text-align: center;
+    align-items: center;
+    margin-top: 70px;
+    justify-content: center;
+    margin-left: 360px;
+}
+
+.search-bar{
+  background-color: #daddd8;
+    padding-right: 13px;
+    padding-top: 3px;
+    padding-left: 13px;
+    border-style: none;
+}
+
+.title-header {
+  color: black;
+}
+
+.card-style {
+  width: '18rem';
+  margin-bottom: 12px;
+}
+
+.footer-style {
+  font-size: 14px;
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+
+.click-icon{
+  text-align: right; 
+  float: right;
+  padding-right: 2px;
+  padding-left: 8px;
+  padding-bottom: 4px;
+  border-style: none;
+}
+
+.add-form-container {
+  margin: auto;
+  width: 50%;
+  border: 1px solid black;
+  padding: 10px 32px 18px 35px;
+  margin-bottom: 16px;
+}
+
+.card-badge{
+  color: #F1D008;
+}
+
+.form-row{
+  padding: 23px 0 17px 0;
+}
+
+.error {
+  color: floralwhite;
+  margin: 5px;
+  font-size: 17px;
+}
+
+.header-course-detail{
+  padding: 19px 9px 9px 21px;
+  margin: 10px 20px 0px
+}
+
+.course-collaborator{
+  float: right;
+}
+
+.course-button {
+  margin: 0 41px;
+}
+
+.edit-field{
+  background-color: lightgray !important;
+}
+
+.course-section {  
+  margin-bottom: 50px;
+  margin-top: 73px;
+}
