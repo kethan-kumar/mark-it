@@ -6,7 +6,6 @@ import React from "react";
 import { useState } from "react";
 import './App.css';
 
-
 const NavigationBar = () => {
     const [toggle, setToggle] = useState(true);
     const handleToggle = () => {
