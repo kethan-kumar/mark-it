@@ -41,7 +41,7 @@ function Profile() {
         padding: 50,
         height: "auto",
         width: 400,
-        margin: "600px auto",
+        margin: "60px auto",
     };
     const avatarStyle = { backgroundColor: "#000000" };
     const classes = useStyles();
@@ -238,7 +238,7 @@ function Profile() {
                 <Grid container spacing={3}>
                     <Grid item lg={3} md={3} sm={2}></Grid>
                     <Grid item xs={12} lg={6} md={6}>
-                        <Card >
+                        <Card style={cardStyle}>
                             <Grid align="center">
                                 <Avatar alt="" src={markit_logo} style={avatarStyle} className={classes.large}></Avatar>
                                 <Typography variant="body1" gutterBottom >
