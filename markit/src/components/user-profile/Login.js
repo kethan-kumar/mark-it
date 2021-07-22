@@ -158,10 +158,14 @@ function Login() {
             if (response.status === 200) {
               console.log('Login successful!');
               history.push('/home');
+              //User session
+              sessionStorage.setItem('markit-email', email);
+              console.log(sessionStorage.getItem('markit-email'));
             }
           }).catch((error) => {
             console.log(error);
             setOpen(true);
+            sessionStorage.setItem('markit-email', "");
           });
       }
       authenticateUser();

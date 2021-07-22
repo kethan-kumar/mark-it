@@ -10,7 +10,7 @@ router.use(express.json());
 //Authenticate user
 router.post('/user-auth', (req, res) => {
     console.log('Login API');
-
+    console.log(req.headers.email, req.headers.password);
     //Generate hash value of the password  for authentication
     req.headers.password = crypto.createHash("sha256").update(req.headers.password, "binary").digest("hex");
     Login.find({

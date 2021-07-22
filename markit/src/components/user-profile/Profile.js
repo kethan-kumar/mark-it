@@ -256,7 +256,8 @@ function Profile() {
                                     </Typography>
                                     <Typography variant="body1" gutterBottom >
                                         <Box fontWeight="Italic" visibility="visible" fontSize="h6.fontSize" m={1}>
-                                            Your contact details in our application is registered as {userDetails.email}
+                                            Your contact details in our application is registered as {userDetails.email}.
+                                            Current user: {sessionStorage.getItem('markit-email')}
                                         </Box>
                                     </Typography>
                                 </div>
