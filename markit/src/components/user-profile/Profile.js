@@ -207,7 +207,9 @@ function Profile() {
     useEffect(() => {
         async function authenticateUser() {
             await axios.post(user_profile_api,
-                { email: 'kt593002@dal.ca' })
+                {
+                    email: sessionStorage.getItem('markit-email')
+                })
                 .then((response) => {
                     console.log(response);
                     if (response.status === 200) {
