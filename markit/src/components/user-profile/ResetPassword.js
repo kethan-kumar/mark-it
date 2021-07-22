@@ -197,7 +197,7 @@ function ResetPassword() {
             } else {
                 async function resetPassword() {
                     await axios.put(reset_password_api,
-                        { 'email': email, 'password': password }).then((response) => {
+                        { 'email': email, 'password': password }, { headers: { 'email': email } }).then((response) => {
                             console.log(response);
                             if (response.status === 200) {
                                 console.log('Verified OTP!');

@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //Connection to MongoDB
-const databaseURI = 'mongodb+srv://csci5709:Password01@cluster0.re83p.mongodb.net/test?retryWrites=true&w=majority';
+const databaseURI = 'mongodb+srv://csci5709:Password01@cluster0.re83p.mongodb.net/markit?retryWrites=true&w=majority';
 mongoose.connect(databaseURI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then((result) => app.listen(PORT, () => {
         console.log('MongoDB connection is successful');
