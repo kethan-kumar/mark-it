@@ -137,7 +137,7 @@ const Course = () => {
                             })
                             .map(c => (
                                 <Container maxwidth="sm">
-                                    <Card style={{ width: '18rem', backgroundColor: 'white', color: '#000000', height: '7rem' }} key={c._id} onClick={() => handleCourseClick(c)}>
+                                    <Card style={{ width: '18rem', backgroundColor: '#639fab', color: '#000000', height: '7rem' }} key={c._id} onClick={() => handleCourseClick(c)}>
                                         <Card.Body>
                                             <Card.Subtitle className="card-badge mb-2">{c.courseId}</Card.Subtitle>
                                             <Card.Text>{c.courseName}</Card.Text>

@@ -129,7 +129,7 @@
 }
 
 .error {
-  color: floralwhite;
+  color: red;
   margin: 5px;
   font-size: 17px;
 }
