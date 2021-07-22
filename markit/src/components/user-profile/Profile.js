@@ -141,9 +141,9 @@ function Profile() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        handleUsername("firstname", firstname);
-        handleUsername("lastname", lastname);
-        handleEmail(email);
+        //handleUsername("firstname", firstname);
+        //handleUsername("lastname", lastname);
+        //handleEmail(email);
 
         const body = {}
         if (firstname) {
@@ -160,10 +160,8 @@ function Profile() {
             async function authenticateUser() {
                 console.log(body);
                 console.log(email);
-                await axios.put(profile_update_api,
-                    {
-                        body
-                    }, { headers: { 'email': userDetails.email } })
+                await axios.put(profile_update_api, body
+                    , { headers: { 'email': userDetails.email } })
                     .then((response) => {
                         console.log(response);
                         if (response.status === 200) {
@@ -233,7 +231,7 @@ function Profile() {
                 });
         }
         authenticateUser();
-    }, [])
+    }, [triggerUseEffect])
 
     if (triggerUseEffect) {
         return (
