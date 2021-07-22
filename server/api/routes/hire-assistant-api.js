@@ -16,7 +16,7 @@ router.post('/hire-assistant', (req, res) => {
         status: req.body.status
     })
         .then((results) => {
-            console.log(results.length);
+            // console.log(results.length);
             if (results.length == 0) {
                 const jobOffer = new jobOffersSchema(req.body);
                 jobOffer.save()
@@ -26,7 +26,7 @@ router.post('/hire-assistant', (req, res) => {
                             result: results
                         });
                     }).catch((err) => {
-                        console.log(err);
+                        // console.log(err);
                         res.status(500).json({
                             message: 'Internal Server Error',
                             result: results
@@ -36,7 +36,7 @@ router.post('/hire-assistant', (req, res) => {
                 res.status(400).json({ message: 'Hire request already sent.' });
             }
         }).catch((err) => {
-            console.log(err);
+            // console.log(err);
             res.status(500).json({
                 message: 'Internal Server Error',
                 result: results
@@ -50,7 +50,7 @@ router.get('/check-user', (req, res) => {
     }
     user.find(filter)
         .then((results) => {
-            console.log(results);
+            // console.log(results);
             if (results && results.length > 0) {
                 return res.status(200).json(
                     {
@@ -66,7 +66,7 @@ router.get('/check-user', (req, res) => {
                 });
             }
         }).catch((err) => {
-            console.log(err);
+            // console.log(err);
             res.status(500).json({
                 message: 'Internal Server Error',
                 result: []

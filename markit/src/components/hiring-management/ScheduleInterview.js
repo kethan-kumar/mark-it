@@ -61,7 +61,7 @@ function ScheduleInterview() {
                         // console.log(response.data.courses);
                         aitems.push(<option>{""}</option>);
                         for (let i = 0; i < response.data.applicants.length; i++) {
-                            console.log(response.data)
+                            // console.log(response.data)
                             aitems.push(<option>{response.data.applicants[i].email}</option>);
                         }
                         setapplicantList(aitems)
@@ -97,7 +97,7 @@ function ScheduleInterview() {
                         // console.log(response.data.courses);
                         items.push(<option>{""}</option>);
                         for (let i = 0; i < response.data.applicants.length; i++) {
-                            console.log(response.data)
+                            // console.log(response.data)
                             items.push(<option>{response.data.applicants[i].email}</option>);
                         }
                         setapplicantList(items)
@@ -118,12 +118,12 @@ function ScheduleInterview() {
     const handleScheduleInterview = event => {
         event.preventDefault();
         setscheduleInterviewState(true)
-        console.log("trying to schedule an interview")
-        console.log(course)
-        console.log(applicantEmail)
+        // console.log("trying to schedule an interview")
+        // console.log(course)
+        // console.log(applicantEmail)
 
         if (course === "") {
-            console.log("INSIDE COURSE INVALID")
+            // console.log("INSIDE COURSE INVALID")
             setvalidInterviewAssistantCourse(false);
             setscheduleInterviewAlertMsg("Please select a course.");
         }
@@ -147,7 +147,7 @@ function ScheduleInterview() {
                         })
                         .then((response) => {
                             if (response.status === 200) {
-                                console.log(' successful!');
+                                // console.log(' successful!');
                                 async function updateJobInterviewStatus() {
                                     await axios.put(job_interview_status_api,
                                         {
@@ -158,7 +158,7 @@ function ScheduleInterview() {
                                         })
                                         .then((response) => {
                                             if (response.status === 200) {
-                                                console.log(' successful!');
+                                                // console.log(' successful!');
                                                 setinterviewState(true)
                                             }
                                         }).catch((error) => {

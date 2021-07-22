@@ -14,7 +14,7 @@ router.post('/schedule-interview', (req, res) => {
         course: req.body.course
     })
         .then((results) => {
-            console.log(results.length);
+            // console.log(results.length);
             if (results.length == 0) {
                 const schedule = new scheduleInterview(req.body);
                 schedule.save()
@@ -24,7 +24,7 @@ router.post('/schedule-interview', (req, res) => {
                             result: results
                         });
                     }).catch((err) => {
-                        console.log(err);
+                        // console.log(err);
                         res.status(500).json({
                             message: 'Internal Server Error',
                             result: results
@@ -34,7 +34,7 @@ router.post('/schedule-interview', (req, res) => {
                 res.status(400).json({message: 'Interview already Scheduled'});
             }
         }).catch((err) => {
-            console.log(err);
+            // console.log(err);
             res.status(500).json({
                 message: 'Internal Server Error',
                 result: results
@@ -66,16 +66,16 @@ router.put('/update-job-application-status', (req, res) => {
 });
 
 router.get('/getApplicantsByCourseAndJob', (req, res) => {
-    console.log(req.query.course)
-    console.log(req.query.course)
-    console.log(req.query.jobPosition)
+    // console.log(req.query.course)
+    // console.log(req.query.course)
+    // console.log(req.query.jobPosition)
     const filter = {
         course: req.query.course,
         jobPosition: req.query.jobPosition
     }
     jobApplication.find(filter)
         .then((results) => {
-                console.log(results);
+                // console.log(results);
                 if (results && results.length > 0) {
                     return res.status(200).json(
                         {
@@ -91,7 +91,7 @@ router.get('/getApplicantsByCourseAndJob', (req, res) => {
                     });
                 }
             }).catch((err) => {
-                console.log(err);
+                // console.log(err);
                 res.status(500).json({
                     message: 'Internal Server Error',
                     result: []

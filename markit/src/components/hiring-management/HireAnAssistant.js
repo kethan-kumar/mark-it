@@ -46,8 +46,8 @@ function HireAnAssistant() {
     const hireAssistant = event => {
         event.preventDefault();
         sethireAssistantState(true);
-        console.log(hireAssistantState);
-        console.log(assistantEmail)
+        // console.log(hireAssistantState);
+        // console.log(assistantEmail)
 
         if (assistantCourse === "") {
             sethireCourseState(false);
@@ -57,7 +57,7 @@ function HireAnAssistant() {
             sethireCourseState(true);
             if (!(/\S+@\S+\.\S+/.test(assistantEmail))) {
                 setvalidAssistantEmail(false);
-                console.log("invalid mail")
+                // console.log("invalid mail")
                 sethireAssistantEmailAlertMsg("Invalid email.");
             }
             else {
@@ -72,7 +72,7 @@ function HireAnAssistant() {
                         })
                         .then((response) => {
                             if (response.status === 200) {
-                                console.log(' successful!');
+                                // console.log(' successful!');
                                 setassistantEmailExists(true);
                                 async function sendInvite() {
                                     await axios.post(hire_assistant_api,
@@ -85,7 +85,7 @@ function HireAnAssistant() {
                                         })
                                         .then((response) => {
                                             if (response.status === 200) {
-                                                console.log(' successful!');
+                                                // console.log(' successful!');
                                                 setinviteSuccess(true)
                                                 sethireAssistantEmailAlertMsg(response.data.message);
                                             }
