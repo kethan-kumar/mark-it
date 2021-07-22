@@ -10,6 +10,7 @@ import { AppBar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Course from './components/courses/Course';
 import CourseDetail from './components/courses/CourseDetail';
+import HiringManagment from './components/hiring-management/HiringManagment';
 
 const useStyles = makeStyles((theme) => ({
   margin: {
@@ -52,6 +53,9 @@ function App() {
             exact path={"/courses/:id"}
             component={() => <CourseDetail />}
           />
+          <Route path="/hiring-management">
+          <HiringManagment></HiringManagment>
+        </Route>
         <Route>
           <h1>Invalid URL</h1>
         </Route>

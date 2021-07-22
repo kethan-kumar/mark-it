@@ -12,6 +12,8 @@ const rootpath = "/api";
 const course_route = require('./api/routes/course');
 const course_schedule_route = require('./api/routes/courseSchedule');
 const collaborator_route = require('./api/routes/collaborator');
+const schedule_interview_route = require('./api/routes/schedule-interview-api')
+const hire_assistant_route = require('./api/routes/hire-assistant-api')
 
 app.use(cors());
 
@@ -51,3 +53,7 @@ app.use(rootpath +'/course', course_route);
 app.use(rootpath +'/schedule', course_schedule_route);
 
 app.use(rootpath +'/collaborator', collaborator_route);
+
+app.use(rootpath + "/hiring-management", schedule_interview_route)
+
+app.use(rootpath + "/hiring-management", hire_assistant_route)
