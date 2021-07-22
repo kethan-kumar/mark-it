@@ -11,6 +11,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import JobApplicationStepper from "./components/jobApplication/JobApplicationStepper";
 import ApplicationTabs from "./components/myApplication/tab"
 import NavigationBar from './navbar';
+import Course from './components/courses/Course';
+import CourseDetail from './components/courses/CourseDetail';
 
 const useStyles = makeStyles((theme) => ({
   margin: {
@@ -54,6 +56,14 @@ function App() {
         </Route>
 
         <Route path = "/jobApplication/:courseName/:jobPosition" exact component={JobApplicationStepper} />
+        <Route
+            exact path={"/courses"}
+            component={() => <Course />}
+          />
+          <Route
+            exact path={"/courses/:id"}
+            component={() => <CourseDetail />}
+          />
         <Route>
           <h1>Invalid URL</h1>
         </Route>
