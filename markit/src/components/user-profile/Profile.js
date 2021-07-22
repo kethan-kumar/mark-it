@@ -41,7 +41,7 @@ function Profile() {
     const cardStyle = {
         padding: 50,
         height: "auto",
-        width: 300,
+        width: 350,
         margin: "40px auto",
     };
     const avatarStyle = { backgroundColor: "#000000" };
@@ -68,8 +68,8 @@ function Profile() {
     const [makeInvisible, setmakeInvisible] = useState("hidden");
     //const [isRegister, setisRegister] = useState(false);
     const [triggerUseEffect, settriggerUseEffect] = useState(true);
-    const user_profile_api = "http://127.0.0.1:8080/api/profile/user-details";
-    const profile_update_api = "http://127.0.0.1:8080/api/profile/update-user"
+    const user_profile_api = "/api/profile/user-details";
+    const profile_update_api = "/api/profile/update-user"
 
     const handleInput = (event) => {
         if (event.target.name === "firstname") {

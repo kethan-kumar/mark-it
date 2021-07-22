@@ -43,7 +43,7 @@ function Login() {
   const cardStyle = {
     padding: 50,
     height: "auto",
-    width: 280,
+    width: 350,
     margin: "112px auto",
   };
 

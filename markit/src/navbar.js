@@ -8,9 +8,9 @@ const NavigationBar = () => {
 
     return (
 
-            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark"  fixed="top">
-                <Container>
-                <Navbar.Brand href="#home" style ={{'color':'#ffc800'}}>
+        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" fixed="top">
+            <Container>
+                <Navbar.Brand href="#home" style={{ 'color': '#ffc800' }}>
                     MarkIT
                     <DoneIcon fontSize="large"></DoneIcon>
                 </Navbar.Brand>
@@ -22,12 +22,15 @@ const NavigationBar = () => {
                         <Nav.Link href="/#/myApplication">MY APPLICATION</Nav.Link>
                         <Nav.Link href="#hiring">HIRING</Nav.Link>
                         <Nav.Link href="#onBoarding">ONBOARDING</Nav.Link>
+                        <Nav.Link href="/#/login">SIGN IN</Nav.Link>
+                        <Nav.Link href="/#/profile">PROFILE</Nav.Link>
+                        <Nav.Link href="/#/reset">RESET</Nav.Link>
                     </Nav>
-                    
+
                 </Navbar.Collapse>
-                </Container>
-            </Navbar>
-           
+            </Container>
+        </Navbar>
+
 
     )
 }
