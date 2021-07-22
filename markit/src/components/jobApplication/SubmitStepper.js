@@ -54,7 +54,8 @@ const SubmitStepper = ({mainForm}) => {
                 result[key]=  response.data[key]
               }    
             setStatus(false)
-           
+            const url = '/#/myApplication?email='+formValue['email'];
+            window.open(url, '_blank');
         }).catch(error =>{
             setStatus(false)
         })

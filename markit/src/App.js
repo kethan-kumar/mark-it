@@ -51,9 +51,7 @@ function App() {
         <Route path="/reset">
           <ResetPassword></ResetPassword>
         </Route>
-        <Route exact path="/myApplication" exact >
-          <ApplicationTabs/>
-        </Route>
+        <Route exact path="/myApplication" exact component ={ApplicationTabs}/>
 
         <Route path = "/jobApplication/:courseName/:jobPosition" exact component={JobApplicationStepper} />
         <Route

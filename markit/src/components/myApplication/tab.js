@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ApplicationTabs() {
+export default function ApplicationTabs(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -74,7 +74,7 @@ export default function ApplicationTabs() {
                     </Tabs>
                 </AppBar>
                 <TabPanel value={value} index={0}>
-                    <JobApplication></JobApplication>
+                    <JobApplication email={new URLSearchParams(props.location.search).get('email')}></JobApplication>
                 </TabPanel>
                 <TabPanel value={value} index={1}>
                     <InterviewScheduled></InterviewScheduled>
