@@ -6,7 +6,6 @@ import {
     Button,
     ButtonGroup
 } from "@material-ui/core";
-import { Link } from "react-router-dom";
 import { Avatar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
@@ -42,7 +41,7 @@ function Profile() {
         padding: 50,
         height: "auto",
         width: 400,
-        margin: "40px auto",
+        margin: "600px auto",
     };
     const avatarStyle = { backgroundColor: "#000000" };
     const classes = useStyles();
@@ -239,7 +238,7 @@ function Profile() {
                 <Grid container spacing={3}>
                     <Grid item lg={3} md={3} sm={2}></Grid>
                     <Grid item xs={12} lg={6} md={6}>
-                        <Card style={cardStyle}>
+                        <Card >
                             <Grid align="center">
                                 <Avatar alt="" src={markit_logo} style={avatarStyle} className={classes.large}></Avatar>
                                 <Typography variant="body1" gutterBottom >
@@ -302,7 +301,7 @@ function Profile() {
                             </Grid>
                             <Grid align="left">
                                 <Typography variant="body1" gutterBottom >
-                                    <Box fontFamily="Monospace" color="primary.main" fontSize="h8.fontSize" m={1}>
+                                    <Box fontFamily="Monospace" fontWeight="fontWeightBold" color="primary.main" fontSize="h8.fontSize" m={1}>
                                         Enter the details that you want to update in markit profile and click apply.
                                     </Box>
                                 </Typography>
