@@ -15,6 +15,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import Box from '@material-ui/core/Box';
 import Icon from '@material-ui/core/Icon';
 import { useState } from "react";
+import { useHistory } from 'react-router';
 import axios from 'axios';
 import markit_logo from "../images/markit_logo.png";
 
@@ -65,6 +66,7 @@ function Register() {
   const [isRegister, setisRegister] = useState(false);
   const [userExists, setuserExists] = useState(false);
   const user_registration_api = "/api/register/add-user";
+  const history = useHistory();
 
   const handleInput = (event) => {
     if (event.target.name === "username") {
@@ -162,6 +164,8 @@ function Register() {
           console.log(response);
           if (response.status === 201) {
             console.log('Registration successful!');
+            sessionStorage.setItem('markit-email', email);
+            history.push('/home');
             setisRegister(true);
           } else if (response.status === 409) {
             console.log('User already exists');
