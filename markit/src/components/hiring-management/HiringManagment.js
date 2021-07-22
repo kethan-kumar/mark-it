@@ -11,10 +11,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function HiringManagment() {
     return (
-        <Container >
-            <Row>
-                <h3> Hiring Management </h3>
-            </Row>
+        <Container className="HM-container">
             <Row>
                 <Col>
                     <ScheduleInterview />

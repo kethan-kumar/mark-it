@@ -28,7 +28,7 @@ const NavigationBar = () => {
                             <Nav.Link href="#home">HOME</Nav.Link>
                             <Nav.Link href="/#/courses">COURSES</Nav.Link>
                             <Nav.Link href="/#/myApplication">MY APPLICATION</Nav.Link>
-                            <Nav.Link href="#hiring">HIRING</Nav.Link>
+                            <Nav.Link href="#/hiring-management">HIRING</Nav.Link>
                             <Nav.Link href="#onBoarding">ONBOARDING</Nav.Link>
                             <Nav.Link href="/#/profile">PROFILE</Nav.Link>
                             <Nav.Link href="/#/reset">RESET</Nav.Link>
