@@ -40,8 +40,8 @@ function Register() {
   const cardStyle = {
     padding: 50,
     height: "auto",
-    width: "350px",
-    margin: "60px auto",
+    width: "375px",
+    margin: "75px auto",
   };
   const avatarStyle = { backgroundColor: "#000000" };
   const classes = useStyles();
