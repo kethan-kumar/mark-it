@@ -1,10 +1,15 @@
-import {React, useState} from 'react';
+// @Author: Rashmi Chandy 
+// Feature: Application Management
+//Task: Track Application
+
+import {React, useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Button from 'react-bootstrap/Button';
+import Axios from "axios";
 
 import Box from '@material-ui/core/Box'
 
@@ -30,14 +35,65 @@ const useStyles = makeStyles({
   
   });
 
-const JobApplication = () => {
+
+const filterCourses =  (courseList,courseId) => {
+        let courseName = courseId;
+       if(courseList && courseList.length >0){
+        var output =  courseList.filter(course => {return course.courseId == courseId});
+        courseName = output[0].courseName
+        }     
+        return courseName
+};
+
+
+const JobApplication = ({email}) => {
     const classes = useStyles();
-    const [jobsApplied, setJobsApplied] = useState([{courseName:'Advanced Web Services', position:'Teaching Assistant', applicationId:1024, status:'Under Review'},
-    {courseName:'Advanced Software Development', position:'Marker', applicationId:1025, status:'Interview Scheduled'}]);
+    const [jobsApplied, setJobsApplied] = useState([]);
     const [visibility,setVisibility]=useState({});
-    const handleClick = (event) => {console.log(event.target.dataset.index)
-    setVisibility({...visibility,[event.target.dataset.index]:true})
+    const handleClick = (event) => {
+        getUpdatedStatus(event.target.dataset.index)
+        setVisibility({...visibility,[event.target.dataset.index]:true}) 
     };
+
+    useEffect(()=>{
+        getJobsApplied()
+    },[])
+
+    // Two API calls are performed in this method. First API call will fetch the list of courses the next API call will fetch the jobs applied. 
+    // The fetched list of courses is used to retrieve the courseName from the course Id. 
+    const getJobsApplied = async () => {
+        await Axios.get("api/course" ).then((courseApiResponse) => {
+            let courseList = courseApiResponse.data["courses"];
+            Axios.get("api/jobApplication/getApplications/"+email ).then((response) => {
+            var result = [] 
+            let jobsAppliedList = response.data["jobApplications"]
+            
+            if(jobsAppliedList && jobsAppliedList.length >0){
+             for (let i=0; i< jobsAppliedList.length; i++){
+                 let obj ={courseName:filterCourses(courseList,jobsAppliedList[i].course), position:jobsAppliedList[i].jobPosition,
+                  applicationId:jobsAppliedList[i].applicationId, status:jobsAppliedList[i].status}
+                 result.push(obj)
+                 }
+             setJobsApplied(result);
+ 
+             }        
+         });
+           
+        });
+       
+    };
+
+    const getUpdatedStatus = async (index) => {
+     
+        await Axios.get("api/jobApplication/getApplications/"+email ).then((response) => {
+            let jobsAppliedList = response.data["jobApplications"]
+            jobsApplied[index].status = jobsAppliedList[index].status
+            setJobsApplied(jobsApplied);       
+        });
+       
+    };
+
+    
 
     return (
         <section>
@@ -49,7 +105,7 @@ const JobApplication = () => {
                         <Typography gutterBottom variant="h6" component="h6">
                             Application: {job.applicationId}
                         </Typography>
-                        <Typography  variant="body" component="p">
+                        <Typography >
                             <Box fontWeight="fontWeightMedium" m={1}>
                                 Course:
                                 <Box fontWeight="fontWeightLight" >

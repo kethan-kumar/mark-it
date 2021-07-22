@@ -1,3 +1,7 @@
+// @Author: Rashmi Chandy 
+// Feature: Application Management
+//Task: Apply for a Job : Parent Component which toggles the steppers
+
 import React from "react";
 import PropTypes from "prop-types";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
@@ -17,6 +21,7 @@ import ExperienceStepper from "./ExperienceStepper";
 import SkillsStepper from './SkillsStepper';
 import { useState,useEffect } from 'react';
 import SubmitStepper from "./SubmitStepper";
+import {Card} from 'react-bootstrap'
 
 const ConnectorStyles = withStyles({
   alternativeLabel: {
@@ -157,24 +162,37 @@ export default function JobApplicationStepper({match}) {
   };
 
   return (
-    <div className={classes.root} style = {{"backgroundColor":"white"}}>
-      <Stepper
-        alternativeLabel
-        activeStep={activeStep}
-        connector={<ConnectorStyles />}
-      >
-        {steps.map((label) => (
-          <Step key={label}>
-            <StepLabel StepIconComponent={StepIcon}>{label}</StepLabel>
-           
-          </Step>
-        ))}
-      </Stepper>
-    
-      <div className= 'spacing'>
-                {getStepContent(activeStep)}
-        </div>
+    <section style= {{"display":"flex","justifyContent": "center", "width":"100%", "backgroundColor": "darkslategray"}}>
+      <Card style={{ width: '70%', height: 'auto', 'marginTop':'5%', "text-align": "left",'backgroundColor': 'lightgrey'}}>
       
-    </div>
+        <Card.Body>
+          <div className={classes.root} style = {{"backgroundColor":"white"}}>
+            <Stepper
+              alternativeLabel
+              activeStep={activeStep}
+              connector={<ConnectorStyles />}
+            >
+              {steps.map((label) => (
+                <Step key={label}>
+                  <StepLabel StepIconComponent={StepIcon}>{label}</StepLabel>
+                
+                </Step>
+              ))}
+            </Stepper>
+          
+            <div className= 'spacing'>
+                    {getStepContent(activeStep)}
+            </div>
+          
+          </div>
+          
+          
+        </Card.Body>
+    
+      </Card>
+
+    </section>
+    
+    
   );
 }

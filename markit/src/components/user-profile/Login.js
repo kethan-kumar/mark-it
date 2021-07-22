@@ -15,6 +15,7 @@ import MuiAlert from '@material-ui/lab/Alert';
 import Snackbar from '@material-ui/core/Snackbar';
 import Box from '@material-ui/core/Box';
 import Icon from '@material-ui/core/Icon';
+import { useHistory } from 'react-router';
 import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import { useState } from "react";
@@ -43,7 +44,7 @@ function Login() {
   const cardStyle = {
     padding: 50,
     height: "auto",
-    width: 280,
+    width: 350,
     margin: "112px auto",
   };
 
@@ -70,6 +71,8 @@ function Login() {
   const [open, setOpen] = React.useState(false);
 
   const user_authentication_api = "/api/login/user-auth";
+
+  const history = useHistory();
 
   const handleInput = (event) => {
     // if (event.target.name === "firstname") {
@@ -154,6 +157,7 @@ function Login() {
             console.log(response);
             if (response.status === 200) {
               console.log('Login successful!');
+              history.push('/home');
             }
           }).catch((error) => {
             console.log(error);
