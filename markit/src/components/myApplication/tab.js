@@ -59,7 +59,7 @@ export default function ApplicationTabs() {
   };
 
   return (
-    <div style= {{"display":"flex","justifyContent": "center", "width":"100%"}}>
+    <div style= {{"display":"flex","justifyContent": "center", "width":"100%", "backgroundColor": "darkslategray"}}>
       <Card style={{ width: '70%', height: 'auto', 'marginTop':'5%',
         'backgroundColor': 'lightgrey'}}>
       
