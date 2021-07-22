@@ -1,3 +1,7 @@
+// @Author: Rashmi Chandy 
+// Feature: Application Management
+//Task: Track Application, View Scheduled Interviews, View, Accept/Reject the job offer
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
@@ -10,6 +14,7 @@ import './tab.css';
 import JobApplication from './JobApplication'
 import InterviewScheduled from './InterviewScheduled'
 import JobOffer from './JobOffer'
+import {Card} from 'react-bootstrap'
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -54,26 +59,40 @@ export default function ApplicationTabs() {
   };
 
   return (
-      <section className='tabStyle'>
-        <div className={classes.root}>
-            <AppBar position="static">
-                <Tabs value={value} onChange={handleChange} aria-label="tabs">
-                <Tab label="Job Application" />
-                <Tab label="Scheduled Interview"  />
-                <Tab label="Job Offer" />
-                </Tabs>
-            </AppBar>
-            <TabPanel value={value} index={0}>
-                <JobApplication></JobApplication>
-            </TabPanel>
-            <TabPanel value={value} index={1}>
-                <InterviewScheduled></InterviewScheduled>
-            </TabPanel>
-            <TabPanel value={value} index={2}>
-                <JobOffer></JobOffer>
-            </TabPanel>
+    <div style= {{"display":"flex","justifyContent": "center", "width":"100%"}}>
+      <Card style={{ width: '70%', height: 'auto', 'marginTop':'5%',
+        'backgroundColor': 'lightgrey'}}>
+      
+        <Card.Body>
+          <section className='tabStyle'>
+            <div className={classes.root}>
+                <AppBar position="static">
+                    <Tabs value={value} onChange={handleChange} aria-label="tabs">
+                    <Tab label="Job Application" />
+                    <Tab label="Scheduled Interview"  />
+                    <Tab label="Job Offer" />
+                    </Tabs>
+                </AppBar>
+                <TabPanel value={value} index={0}>
+                    <JobApplication></JobApplication>
+                </TabPanel>
+                <TabPanel value={value} index={1}>
+                    <InterviewScheduled></InterviewScheduled>
+                </TabPanel>
+                <TabPanel value={value} index={2}>
+                    <JobOffer></JobOffer>
+                </TabPanel>
+            </div>
+         </section>
+          
+          
+        </Card.Body>
+    
+      </Card>
+
     </div>
-      </section>
+    
+      
     
   );
 }

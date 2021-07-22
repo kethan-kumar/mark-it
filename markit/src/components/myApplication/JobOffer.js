@@ -1,3 +1,7 @@
+// @Author: Rashmi Chandy 
+// Feature: Application Management
+//Task: View, Accept/Reject the job offer
+
 import {React,useState} from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';

@@ -1,3 +1,7 @@
+// @Author: Rashmi Chandy 
+// Feature: Application Management
+//Task: Apply for a Job : Confirmation Screen
+
 import React from 'react'
 import { useState,useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
@@ -59,8 +63,7 @@ const SubmitStepper = ({mainForm}) => {
     
     return (
 
-        <div style = {{"display":"flex", "justifyContent":"center", "color":"white", "backgroundColor": "#537895",
-       "backgroundImage": "linear-gradient(315deg, #537895 0%, #09203f 74%)"}}>
+        <div style = {{"display":"flex", "justifyContent":"center", "color":"black"}}>
             <div className={classes.button} style = {{  "padding": "14px" }}> 
             <Grid container spacing={2}>
                 <Grid item >
@@ -68,7 +71,7 @@ const SubmitStepper = ({mainForm}) => {
                         <Spinner animation="border" variant="warning" role="status" /> }
                     <div >
                         <h2>{result.message}</h2>
-                        {result['applicationId'] &&<h4 style = {{"color":"gold","textAlign":"center"}}>Applicant ID : {result['applicationId']}</h4>}
+                        {result['applicationId'] &&<h4 style = {{"color":"rgb(255, 200, 0)","textAlign":"center"}}>Applicant ID : {result['applicationId']}</h4>}
                         
                     </div>
 

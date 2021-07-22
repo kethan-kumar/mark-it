@@ -1,3 +1,6 @@
+// @Author: Rashmi Chandy 
+// Feature: Application Management
+
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 

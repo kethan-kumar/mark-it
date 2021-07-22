@@ -1,6 +1,8 @@
+// @Author: Rashmi Chandy 
+// Feature: Application Management
+
 const express = require('express')
 const router = express.Router()
-const { uuid } = require('uuidv4');
 const JobApplicationModel = require("../models/jobApplicationSchema");
 
 // Insert new job application details 

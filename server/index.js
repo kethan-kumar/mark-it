@@ -8,6 +8,7 @@ const register_route = require("./api/routes/register-api");
 const login_route = require('./api/routes/login-api');
 const profile_route = require('./api/routes/profile-api');
 const reset_route = require('./api/routes/send-email-api');
+const jobApplicationRouter = require('./api/routes/jobApplication')
 const rootpath = "/api";
 
 app.use(cors());
@@ -42,3 +43,5 @@ app.use(rootpath + "/login", login_route);
 app.use(rootpath + "/profile", profile_route);
 
 app.use(rootpath + "/reset", reset_route);
+
+app.use(rootpath+ "/jobApplication",jobApplicationRouter)

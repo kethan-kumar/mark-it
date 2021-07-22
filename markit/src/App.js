@@ -8,6 +8,9 @@ import Home from "./components/user-profile/Home";
 import { Switch, Route } from "react-router-dom";
 import { AppBar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import JobApplicationStepper from "./components/jobApplication/JobApplicationStepper";
+import ApplicationTabs from "./components/myApplication/tab"
+import NavigationBar from './navbar';
 
 const useStyles = makeStyles((theme) => ({
   margin: {
@@ -23,6 +26,10 @@ function App() {
   const classes = useStyles();
   return (
     <div className="App">
+      <header>
+        <NavigationBar></NavigationBar>
+      </header>
+
       {/* <AppBar className="nav-bar" position="static" color="blue">
         
       </AppBar> */}
@@ -42,6 +49,11 @@ function App() {
         <Route path="/reset">
           <ResetPassword></ResetPassword>
         </Route>
+        <Route exact path="/myApplication" exact >
+          <ApplicationTabs/>
+        </Route>
+
+        <Route path = "/jobApplication/:courseName/:jobPosition" exact component={JobApplicationStepper} />
         <Route>
           <h1>Invalid URL</h1>
         </Route>
