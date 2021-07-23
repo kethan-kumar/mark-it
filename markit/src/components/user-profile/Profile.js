@@ -11,11 +11,17 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Box from '@material-ui/core/Box';
 import Icon from '@material-ui/core/Icon';
+import MuiAlert from '@material-ui/lab/Alert';
+import Snackbar from '@material-ui/core/Snackbar';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
 import { useState, useEffect } from "react";
 import axios from 'axios';
 import markit_logo from "../images/markit_logo.png";
+
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 const useStyles = makeStyles((theme) => ({
     margin: {
@@ -65,10 +71,10 @@ function Profile() {
     })
     const [makeVisible, setmakeVisible] = useState("visible");
     const [makeInvisible, setmakeInvisible] = useState("hidden");
-    //const [isRegister, setisRegister] = useState(false);
     const [triggerUseEffect, settriggerUseEffect] = useState(true);
     const user_profile_api = "/api/profile/user-details";
-    const profile_update_api = "/api/profile/update-user"
+    const profile_update_api = "/api/profile/update-user";
+    const [success, setSuccess] = React.useState(false);
 
     const handleInput = (event) => {
         if (event.target.name === "firstname") {
@@ -103,9 +109,6 @@ function Profile() {
         if (userName !== null && userName !== "") {
             boolName = regex.test(userName);
         }
-        // if (nameValue === "username") {
-        //     setvalidUsername(boolName);
-        // }
         if (nameValue === "firstname") {
             setvalidFirstname(boolName);
         }
@@ -138,12 +141,15 @@ function Profile() {
         }
     };
 
+    const handleSuccess = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setSuccess(false);
+    };
+
     const handleSubmit = (event) => {
         event.preventDefault();
-        //handleUsername("firstname", firstname);
-        //handleUsername("lastname", lastname);
-        //handleEmail(email);
-
         const body = {}
         if (firstname) {
             body['firstname'] = firstname;
@@ -166,10 +172,18 @@ function Profile() {
                         if (response.status === 200) {
                             console.log('Profile updated successful!');
                             handleEdit();
-                            //settriggerUseEffect(true);
+                            setSuccess(true);
+                            setuserDetails({
+                                ...userDetails,
+                                firstname: response.data.result[0].firstname,
+                                lastname: response.data.result[0].lastname,
+                                email: response.data.result[0].email
+                            })
+                            if (email) {
+                                sessionStorage.setItem(response.data.result[0].email);
+                            }
                         } else if (response.status === 404) {
                             console.log('Profile not found');
-                            //settriggerUseEffect(false);
                         }
                     }).catch((error) => {
                         console.log(error);
@@ -178,14 +192,6 @@ function Profile() {
             authenticateUser();
         }
     };
-
-    // const handleRegistration = () => {
-    //   setisRegister(true);
-    // };
-
-    // const handleLogin = () => {
-    //   setisRegister(false);
-    // };
 
     const handleTnC = (tncValue) => {
         settnc(tncValue);
@@ -222,10 +228,8 @@ function Profile() {
                             email: response.data.result[0].email
                         })
                         console.log(userDetails);
-                        //settriggerUseEffect(true);
                     } else if (response.status === 404) {
                         console.log('Profile not found');
-                        //settriggerUseEffect(false);
                     }
                 }).catch((error) => {
                     console.log(error);
@@ -236,7 +240,7 @@ function Profile() {
 
     if (triggerUseEffect) {
         return (
-            <div className="App">
+            <div >
                 <Grid container spacing={3}>
                     <Grid item lg={3} md={3} sm={2}></Grid>
                     <Grid item xs={12} lg={6} md={6}>
@@ -288,7 +292,7 @@ function Profile() {
         );
     } else {
         return (
-            <div className="App">
+            <div >
                 <Grid container spacing={3}>
                     <Grid item lg={3} md={3} sm={2}></Grid>
                     <Grid item xs={12} lg={6} md={6}>
@@ -384,6 +388,11 @@ function Profile() {
                                                 >
                                                     APPLY
                                                 </Button>
+                                                <Snackbar open={success} autoHideDuration={750} onClose={handleSuccess}>
+                                                    <Alert onClose={handleSuccess} severity="success">
+                                                        Profile updated successfully!''
+                                                    </Alert>
+                                                </Snackbar>
                                                 <Button
                                                     type="submit"
                                                     color="primary"

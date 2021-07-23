@@ -9,15 +9,12 @@ import './App.css';
 
 
 const NavigationBar = () => {
-    const [toggle, setToggle] = useState(false);
     const [display, setdisplay] = useState(false);
     const [number, setNumber] = useState(0);
     const history = useHistory();
-    console.log('Navbar:' + sessionStorage.getItem('markit-email'));
-    console.log(number);
 
     const increment = () => {
-        if (sessionStorage.getItem('markit-email') == null || sessionStorage.getItem('markit-email') == "") {
+        if (sessionStorage.getItem('markit-email') == null || sessionStorage.getItem('markit-email') === "") {
             setNumber(number + 1);
             setdisplay(false);
         }
@@ -27,7 +24,6 @@ const NavigationBar = () => {
     }
 
     const handleToggle = () => {
-        console.log('hanndletoggle');
         if (sessionStorage.getItem('markit-email')) {
             setdisplay(false);
             sessionStorage.setItem('markit-email', null);
@@ -59,12 +55,9 @@ const NavigationBar = () => {
                             <Nav.Link href="/#/reset">RESET</Nav.Link>
                             <Nav.Link href="#/home" onClick={handleToggle}>LOGOUT</Nav.Link>
                         </Nav>
-
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
-
-
         );
     }
     else {
@@ -81,7 +74,6 @@ const NavigationBar = () => {
                             <Nav.Link href="#home">HOME</Nav.Link>
                             <Nav.Link href="/#/login" >SIGN IN</Nav.Link>
                         </Nav>
-
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
