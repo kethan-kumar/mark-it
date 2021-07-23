@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const scheduleInterview = require('../models/scheduleInterviewSchema');
 const jobApplication = require('../models/jobApplicationSchema');
+const courseModel = require("../models/courseSchema");
 const router = express.Router();
 
 router.use(express.urlencoded({ extended: false }));
@@ -97,6 +98,46 @@ router.get('/getApplicantsByCourseAndJob', (req, res) => {
                     result: []
                 });
             });
+});
+
+// Get interview details of a particular user
+router.get('/getInterviewScheduled/:email', (req, res) => {
+    const emailId =req.params.email;
+    try{
+        courseModel.find().then(items=>{
+            //list of all courses
+            let courseList = items
+        
+            scheduleInterview.find({applicantEmail:emailId}).then((filteredInterview)=>{
+                if(filteredInterview && filteredInterview.length > 0){
+                    jobApplication.find({email:emailId}).then((applicationDetails) => {
+                        return res.status(200).json({
+                            success: true, 
+                            interviewDetails:filteredInterview,
+                            jobApplications:applicationDetails,
+                            courses:courseList
+                        })
+                        
+                    })
+                }
+                else return res.status(404).json({
+                    success: false,
+                    message:"No interviews scheduled for user with id "+emailId,
+                    interviewDetails:[],
+                    jobApplications:[],
+                    courses:[] })
+            }) 
+         })
+      
+    }
+    catch(error){
+      return res.status(500).json(
+        {
+          success: false,
+          message:"Internal Server Error occurred while retrieving interviews",
+        })
+    }
+
 });
 
 module.exports = router;
