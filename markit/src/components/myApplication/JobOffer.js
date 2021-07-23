@@ -58,9 +58,6 @@ const JobOffer = () => {
       })
   }
 
-  
-   
-
     return (
         <section>
              <div className={classes.root}>
