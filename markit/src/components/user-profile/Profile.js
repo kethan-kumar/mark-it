@@ -207,7 +207,9 @@ function Profile() {
     useEffect(() => {
         async function authenticateUser() {
             await axios.post(user_profile_api,
-                { email: 'kt593002@dal.ca' })
+                {
+                    email: sessionStorage.getItem('markit-email')
+                })
                 .then((response) => {
                     console.log(response);
                     if (response.status === 200) {
@@ -256,7 +258,7 @@ function Profile() {
                                     </Typography>
                                     <Typography variant="body1" gutterBottom >
                                         <Box fontWeight="Italic" visibility="visible" fontSize="h6.fontSize" m={1}>
-                                            Your contact details in our application is registered as {userDetails.email}
+                                            Your contact details in our application is registered as {userDetails.email}.
                                         </Box>
                                     </Typography>
                                 </div>
