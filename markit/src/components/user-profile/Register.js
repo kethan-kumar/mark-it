@@ -156,7 +156,6 @@ function Register() {
     handleEmail(email);
     handleTnC(tnc);
     setOpen(false);
-    console.log("Register");
     async function authenticateUser() {
       await axios.post(user_registration_api,
         {}, { headers: { 'firstname': firstname, 'lastname': lastname, 'email': email, 'password': password } })

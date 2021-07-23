@@ -136,11 +136,6 @@ function ResetPassword() {
         handleEmail(email);
         setOpen(false);
         setOpen(false);
-        console.log("valid email:" + validEmail);
-        console.log("mail sent:" + mailSent);
-        console.log("otp otpVerified:" + otpVerified);
-        console.log("reset successful:" + resetSuccessful);
-        console.log("Snackbar open:" + open);
 
         if (validEmail && !mailSent && !otpVerified) {
             async function sendMailUser() {

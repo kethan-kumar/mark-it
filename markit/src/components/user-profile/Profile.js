@@ -163,12 +163,9 @@ function Profile() {
 
         if (firstname || lastname || email) {
             async function authenticateUser() {
-                console.log(body);
-                console.log(email);
                 await axios.put(profile_update_api, body
                     , { headers: { 'email': userDetails.email } })
                     .then((response) => {
-                        console.log(response);
                         if (response.status === 200) {
                             console.log('Profile updated successful!');
                             handleEdit();
@@ -279,7 +276,11 @@ function Profile() {
                                         >
                                             EDIT DETAILS
                                         </Button>
-
+                                        <Snackbar open={success} autoHideDuration={750} onClose={handleSuccess}>
+                                            <Alert onClose={handleSuccess} severity="success">
+                                                Profile updated successfully!''
+                                            </Alert>
+                                        </Snackbar>
                                     </Grid>
                                 </div>
                             </form>
@@ -353,7 +354,7 @@ function Profile() {
                                         ></TextField>
                                     </Box>
                                 </div>
-                                <div>
+                                {/* <div>
                                     <Box visibility={makeInvisible}>
                                         <TextField
                                             label="Email"
@@ -368,7 +369,7 @@ function Profile() {
                                             onChange={handleInput}
                                         ></TextField>
                                     </Box>
-                                </div>
+                                </div> */}
                                 <div>
                                     <Grid align="center">
                                         <Box visibility={makeInvisible}>
@@ -388,11 +389,6 @@ function Profile() {
                                                 >
                                                     APPLY
                                                 </Button>
-                                                <Snackbar open={success} autoHideDuration={750} onClose={handleSuccess}>
-                                                    <Alert onClose={handleSuccess} severity="success">
-                                                        Profile updated successfully!''
-                                                    </Alert>
-                                                </Snackbar>
                                                 <Button
                                                     type="submit"
                                                     color="primary"
