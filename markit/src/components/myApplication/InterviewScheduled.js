@@ -18,7 +18,6 @@ const InterviewScheduled = () => {
                     <th>Application Number</th>
                     <th>Job Details</th>
                     <th>Date and Time</th>
-                    <th>Location </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,7 +26,6 @@ const InterviewScheduled = () => {
                         <td>{interview.applicationNo}</td>
                         <td>{interview.jobDetails}</td>
                         <td>{interview.dateTime}</td>
-                        <td>{interview.location}</td>
                         </tr>
                     )}
                    

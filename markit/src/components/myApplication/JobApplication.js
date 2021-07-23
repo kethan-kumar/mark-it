@@ -157,6 +157,9 @@ const JobApplication = ({email}) => {
         else if(status === 'Interview Scheduled'){
             return "primary"
         }
+        else if(status === 'Hired'){
+            return "info"
+        }
         else if(status === 'Accepted'){
             return "success"
         }
