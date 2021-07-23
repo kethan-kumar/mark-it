@@ -13,6 +13,7 @@ import ApplicationTabs from "./components/myApplication/tab"
 import NavigationBar from './navbar';
 import Course from './components/courses/Course';
 import CourseDetail from './components/courses/CourseDetail';
+import OnBoadingProcess from "./components/onboarding/OnBoardingProcess";
 
 const useStyles = makeStyles((theme) => ({
   margin: {
@@ -65,6 +66,9 @@ function App() {
           exact path={"/courses/:id"}
           component={() => <CourseDetail />}
         />
+        <Route exact path="/onBoarding" exact >
+          <OnBoadingProcess />
+        </Route>
         <Route>
           <h1>Invalid URL</h1>
         </Route>
