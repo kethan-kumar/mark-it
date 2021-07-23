@@ -6,7 +6,6 @@ import Profile from "./components/user-profile/Profile";
 import ResetPassword from "./components/user-profile/ResetPassword";
 import Home from "./components/pages/Home";
 import { Switch, Route } from "react-router-dom";
-import { AppBar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import JobApplicationStepper from "./components/jobApplication/JobApplicationStepper";
 import ApplicationTabs from "./components/myApplication/tab"
@@ -14,6 +13,7 @@ import NavigationBar from './navbar';
 import Course from './components/courses/Course';
 import CourseDetail from './components/courses/CourseDetail';
 import OnBoadingProcess from "./components/onboarding/OnBoardingProcess";
+import HiringManagment from './components/hiring-management/HiringManagment';
 
 const useStyles = makeStyles((theme) => ({
   margin: {
@@ -52,7 +52,7 @@ function App() {
         <Route path="/reset">
           <ResetPassword></ResetPassword>
         </Route>
-        <Route exact path="/myApplication" exact component ={ApplicationTabs}/>
+        <Route exact path="/myApplication" exact component={ApplicationTabs} />
         <Route exact path="/myApplication" exact >
           <ApplicationTabs />
         </Route>
@@ -63,11 +63,18 @@ function App() {
           component={() => <Course />}
         />
         <Route
+            exact path={"/courses"}
+            component={() => <Course />}
+          />
+          <Route
           exact path={"/courses/:id"}
           component={() => <CourseDetail />}
         />
-        <Route exact path="/onBoarding" exact >
+        <Route exact path="/onboarding" exact >
           <OnBoadingProcess />
+          </Route>
+        <Route path="/hiring-management">
+          <HiringManagment></HiringManagment>
         </Route>
         <Route>
           <h1>Invalid URL</h1>

@@ -13,7 +13,12 @@ const rootpath = "/api";
 const course_route = require('./api/routes/course');
 const course_schedule_route = require('./api/routes/courseSchedule');
 const collaborator_route = require('./api/routes/collaborator');
+<<<<<<< HEAD
 const onboarding_route= require('./api/routes/onboarding-api');
+=======
+const schedule_interview_route = require('./api/routes/schedule-interview-api')
+const hire_assistant_route = require('./api/routes/hire-assistant-api')
+>>>>>>> 3b7db949c3b546242b3bebeed3bf177d591f31a7
 
 app.use(cors());
 
@@ -56,4 +61,10 @@ app.use(rootpath +'/schedule', course_schedule_route);
 
 app.use(rootpath +'/collaborator', collaborator_route);
 
+<<<<<<< HEAD
 app.use(rootpath +'/onboarding', onboarding_route);
+=======
+app.use(rootpath + "/hiring-management", schedule_interview_route)
+
+app.use(rootpath + "/hiring-management", hire_assistant_route)
+>>>>>>> 3b7db949c3b546242b3bebeed3bf177d591f31a7

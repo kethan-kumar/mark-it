@@ -1,14 +1,52 @@
 // @Author: Rashmi Chandy 
 // Feature: Application Management
 //Task: Interview Scheduled
- 
-import {React,useState} from 'react'
+ import {React, useState, useEffect} from 'react';
 import Table from 'react-bootstrap/Table'
 import Box from '@material-ui/core/Box'
+import Axios from "axios";
 
-const InterviewScheduled = () => {
-    const [interviewDetails,setInterviewDetails]= useState([{applicationNo:1025,jobDetails:"Advanced Software Development - Marker", dateTime:'12-June-2021 09:00am',location:"Microsoft Teams"},
-    {applicationNo:1026,jobDetails:"Advanced Database Systems - Teaching Assistant", dateTime:'15-June-2021 10:00am',location:"Goldberg Building"}])
+const InterviewScheduled = ({email}) => {
+    const [interviewDetails,setInterviewDetails]= useState([])
+    useEffect(()=>{
+        getInterviews()
+    },[])
+
+    const filterCourses =  (courseList,courseId) => {
+        let courseName = courseId;
+       if(courseList && courseList.length >0){
+        var output =  courseList.filter(course => {return course.courseId == courseId});
+        courseName = output[0].courseName
+        }     
+        return courseName
+    };
+
+
+    // Two API calls are performed in this method. First API call will fetch the list of courses the next API call will fetch the jobs applied. 
+    // The fetched list of courses is used to retrieve the courseName from the course Id. 
+    const getInterviews = async () => {
+        Axios.get("api/hiring-management/getInterviewScheduled/"+email ).then((response) => {
+        var scheduledInterviews = [] 
+        let interviewDetailsList = response.data["interviewDetails"]
+        let jobsAppliedList = response.data["jobApplications"]
+        let courseList = response.data["courses"]
+        interviewDetailsList.forEach(interview=>{
+            let applicationDetails = jobsAppliedList.filter(application=>{ return application.jobPosition == interview.position && 
+                    application.course == interview.course && application.email == interview.applicantEmail
+            })
+            let courseName = filterCourses(courseList,applicationDetails[0].course)
+            scheduledInterviews.push({  applicationNo: applicationDetails[0].applicationId,
+                jobDetails:courseName+ " - "+applicationDetails[0].jobPosition,
+                dateTime: new Date(interview.interviewDateAndTime).toString()
+            })
+
+        })
+        
+        setInterviewDetails(scheduledInterviews);   
+        })
+    }
+    
+    
     return (
         <section>
             {interviewDetails.length>0 &&
@@ -18,7 +56,6 @@ const InterviewScheduled = () => {
                     <th>Application Number</th>
                     <th>Job Details</th>
                     <th>Date and Time</th>
-                    <th>Location </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,7 +64,6 @@ const InterviewScheduled = () => {
                         <td>{interview.applicationNo}</td>
                         <td>{interview.jobDetails}</td>
                         <td>{interview.dateTime}</td>
-                        <td>{interview.location}</td>
                         </tr>
                     )}
                    

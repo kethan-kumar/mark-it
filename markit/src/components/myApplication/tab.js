@@ -77,7 +77,7 @@ export default function ApplicationTabs(props) {
                     <JobApplication email={new URLSearchParams(props.location.search).get('email')}></JobApplication>
                 </TabPanel>
                 <TabPanel value={value} index={1}>
-                    <InterviewScheduled></InterviewScheduled>
+                    <InterviewScheduled email={new URLSearchParams(props.location.search).get('email')}></InterviewScheduled>
                 </TabPanel>
                 <TabPanel value={value} index={2}>
                     <JobOffer></JobOffer>

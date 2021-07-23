@@ -50,87 +50,29 @@ function Login() {
 
   const avatarStyle = { backgroundColor: "#000000" };
   const classes = useStyles();
-
-  // const [firstname, setfirstname] = useState("");
-  // const [lastname, setlastname] = useState("");
   const [password, setpassword] = useState("");
   const [email, setemail] = useState("");
-  //const [confirmPassword, setconfirmPassword] = useState("");
-
-  //const [validPassword, setvalidPassword] = useState(true);
-  //const [validUsername, setvalidUsername] = useState(true);
-  // const [validFirstname, setvalidFirstname] = useState(true);
-  // const [validLastname, setvalidLastname] = useState(true);
-  //const [validConfPwd, setvalidConfPwd] = useState(true);
   const [validEmail, setvalidEmail] = useState(true);
   const [validTnC, setvalidTnC] = useState(true);
   const [tnc, settnc] = useState(false);
-  //const [authStatus, setauthStatus] = useState(false);
-
-  //const [isRegister, setisRegister] = useState(false);
   const [open, setOpen] = React.useState(false);
-
+  const [success, setSuccess] = React.useState(false);
   const user_authentication_api = "/api/login/user-auth";
-
   const history = useHistory();
 
   const handleInput = (event) => {
-    // if (event.target.name === "firstname") {
-    //   setfirstname(event.target.value);
-    //   handleUsername(event.target.id, event.target.value);
-    // }
-    // if (event.target.name === "lastname") {
-    //   setlastname(event.target.value);
-    //   handleUsername(event.target.id, event.target.value);
-    // }
     if (event.target.name === "password") {
       setpassword(event.target.value);
-      //handlePassword(event.target.value);
     }
     if (event.target.name === "email") {
       setemail(event.target.value);
       handleEmail(event.target.value);
     }
-    // if (event.target.name === "confirmPassword") {
-    //   setconfirmPassword(event.target.value);
-    //   handleConfirmPassword(event.target.value);
-    // }
     if (event.target.name === "tnc") {
       settnc(event.target.checked);
       handleTnC(event.target.checked);
     }
   };
-
-  // const handleUsername = (nameValue, userName) => {
-  //   let boolName = false;
-  //   const regex = /^\w+$/;
-  //   if (userName !== null && userName !== "") {
-  //     boolName = regex.test(userName);
-  //   }
-  //   if (nameValue === "firstname") {
-  //     setvalidFirstname(boolName);
-  //   }
-  //   if (nameValue === "lastname") {
-  //     setvalidLastname(boolName);
-  //   }
-  // };
-
-  // const handlePassword = (passWord) => {
-  //   if (passWord !== null || passWord !== "") {
-  //     const regex =
-  //       /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[%$&!*@?])[A-Za-z\d@$!%*?&]{8,}$/;
-  //     setvalidPassword(regex.test(passWord));
-  //   }
-  // };
-
-  // const handleConfirmPassword = (passWord) => {
-  //   if (passWord !== null && passWord !== "") {
-  //     if (password === passWord) setvalidConfPwd(true);
-  //     else setvalidConfPwd(false);
-  //   } else {
-  //     setvalidConfPwd(false);
-  //   }
-  // };
 
   const handleEmail = (emailID) => {
     if (emailID !== null || emailID !== "") {
@@ -141,13 +83,8 @@ function Login() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // handleUsername("firstname", firstname);
-    // handleUsername("lastname", lastname);
-    //handlePassword(password);
-    //handleConfirmPassword(confirmPassword);
     handleEmail(email);
     handleTnC(tnc);
-
     setOpen(false);
 
     if (tnc && email) {
@@ -157,20 +94,22 @@ function Login() {
             console.log(response);
             if (response.status === 200) {
               console.log('Login successful!');
-              history.push('/home');
+              setSuccess(true);
+
+              //User session
+              sessionStorage.setItem('markit-email', email);
+              console.log(sessionStorage.getItem('markit-email'));
+              console.log('setsuccess:' + success);
             }
           }).catch((error) => {
             console.log(error);
             setOpen(true);
+            sessionStorage.setItem('markit-email', "");
           });
       }
       authenticateUser();
     }
   };
-
-  // const handleRegistration = () => {
-  //   setisRegister(true);
-  // };
 
   const handleTnC = (tncValue) => {
     settnc(tncValue);
@@ -184,8 +123,16 @@ function Login() {
     setOpen(false);
   };
 
+  const handleSuccess = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setSuccess(false);
+    history.push('/home');
+  };
+
   return (
-    <div className="App">
+    <div >
       <Grid container spacing={3}>
         <Grid item lg={3} md={3}></Grid>
         <Grid item xs={12} lg={6} md={6}>
@@ -276,6 +223,11 @@ function Login() {
                   <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
                     <Alert onClose={handleClose} severity="error">
                       Invalid email or password!
+                    </Alert>
+                  </Snackbar>
+                  <Snackbar open={success} autoHideDuration={750} onClose={handleSuccess}>
+                    <Alert onClose={handleSuccess} severity="success">
+                      Logged in successfully!
                     </Alert>
                   </Snackbar>
                 </Grid>
