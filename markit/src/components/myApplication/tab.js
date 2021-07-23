@@ -80,7 +80,7 @@ export default function ApplicationTabs(props) {
                     <InterviewScheduled email={new URLSearchParams(props.location.search).get('email')}></InterviewScheduled>
                 </TabPanel>
                 <TabPanel value={value} index={2}>
-                    <JobOffer></JobOffer>
+                    <JobOffer email={new URLSearchParams(props.location.search).get('email')}></JobOffer>
                 </TabPanel>
             </div>
          </section>

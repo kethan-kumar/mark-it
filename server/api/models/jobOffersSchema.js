@@ -22,10 +22,14 @@ const registrationSchema = new mongoose.Schema(
         status:{
             type: String,
             required: true
+        },
+        comments:{
+            type:String,
+            required:false
         }
     }, { timestamps: true }
 );
 
-const registration = mongoose.model('joboffer', registrationSchema);
+const registration = mongoose.model('joboffers', registrationSchema);
 
 module.exports = registration;

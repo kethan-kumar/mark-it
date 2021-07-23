@@ -13,8 +13,8 @@ const NavigationBar = () => {
     const [display, setdisplay] = useState(false);
     const [number, setNumber] = useState(0);
     const history = useHistory();
-    console.log('Navbar:' + sessionStorage.getItem('markit-email'));
-    console.log(number);
+    // console.log('Navbar:' + sessionStorage.getItem('markit-email'));
+    // console.log(number);
 
     const increment = () => {
         if (sessionStorage.getItem('markit-email') == null || sessionStorage.getItem('markit-email') == "") {

@@ -51,17 +51,19 @@ router.put('/update-job-application-status', (req, res) => {
     }
 
     const update = {
-        status: "Interview Scheduled"
+        status: req.body.status
     }
     
     jobApplication.findOneAndUpdate(filter, update, { new: true })
         .then((results) => {
             res.status(200).json({
                 message: 'Job updated successfully!',
+                result:results
             });
         }).catch((err) => {
             res.status(500).json({
                 message: 'Internal Server Error',
+                error:err
             });
         });
 });

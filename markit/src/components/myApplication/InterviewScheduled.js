@@ -22,8 +22,7 @@ const InterviewScheduled = ({email}) => {
     };
 
 
-    // Two API calls are performed in this method. First API call will fetch the list of courses the next API call will fetch the jobs applied. 
-    // The fetched list of courses is used to retrieve the courseName from the course Id. 
+    // The interview and job application details are combined to display the interview details
     const getInterviews = async () => {
         Axios.get("api/hiring-management/getInterviewScheduled/"+email ).then((response) => {
         var scheduledInterviews = [] 

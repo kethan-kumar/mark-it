@@ -1,8 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const jobOffersSchema = require('../models/jobOffersSchema');
 const user = require('../models/userDetailsSchema');
 const router = express.Router();
+const courseModel = require("../models/courseSchema");
+const jobOffersSchema = require('../models/jobOffersSchema');
+const JobPostingModel = require('../models/jobPostingSchema');
 
 router.use(express.urlencoded({ extended: false }));
 router.use(express.json());
@@ -73,4 +75,78 @@ router.get('/check-user', (req, res) => {
             });
         });
 });
+
+// get job offers for user with given id.
+//  The job offer API fetches additional job details from job posting table to display the final Job offer
+router.get('/jobOffers/:emailId', (req, res) => {
+    const emailId =req.params.emailId;
+    try{
+        courseModel.find().then(items=>{
+            //list of all courses
+            let courseList = items
+        
+            jobOffersSchema.find({applicantEmail:emailId}).then((jobOffer)=>{
+                if(jobOffer && jobOffer.length > 0){
+                    JobPostingModel.find().then((jobs) => {
+                        return res.status(200).json({
+                            success: true, 
+                            jobs:jobs,
+                            jobOffers:jobOffer,
+                            courses:courseList
+                        })
+                        
+                    })
+                }
+                else return res.status(404).json({
+                    success: false,
+                    message:"No jobs offered for user with id "+emailId,
+                    interviewDetails:[],
+                    jobApplications:[],
+                    courses:[] })
+            }) 
+         })
+      
+    }
+    catch(error){
+      return res.status(500).json(
+        {
+          success: false,
+          message:"Internal Server Error occurred while retrieving job offers","interviewDetails":[],"jobApplications":[],
+          "courses":[],
+        })
+    }
+
+});
+
+// Update the job offer status flag
+router.put('/update-job-offer-status', (req, res) => {
+    const filter = {
+        applicantEmail: req.body.email,
+        course: req.body.course,
+        jobPosition: req.body.position
+    }
+
+    const update = {
+        status: req.body.status,
+        comments:req.body.comments
+    }
+    
+    jobOffersSchema.findOneAndUpdate(filter, update, { new: true })
+        .then((results) => {
+            res.status(200).json({
+                message: 'Job Offer updated successfully!',
+                result:results
+            });
+        }).catch((err) => {
+            res.status(500).json({
+                message: 'Internal Server Error',
+                error:err
+            });
+        });
+});
+
+
+
+        
+    
 module.exports = router;
