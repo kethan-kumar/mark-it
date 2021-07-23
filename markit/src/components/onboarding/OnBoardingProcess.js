@@ -108,7 +108,7 @@ const OnBoadingProcess = () => {
 
   const classes = setStyles();
   return (
-
+    <section style= {{"display":"flex","justifyContent": "center", "width":"100%"}}>
     <div className={classes.onboard}>
 
       <h2 class="stepheader" >
@@ -145,7 +145,7 @@ const OnBoadingProcess = () => {
 
           </>
         )}
-    </div>
+    </div></section>
   );
 }
 
