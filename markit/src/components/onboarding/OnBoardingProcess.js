@@ -108,8 +108,8 @@ const OnBoadingProcess = () => {
 
   const classes = setStyles();
   return (
-    <section style= {{"display":"flex","justifyContent": "center", "width":"100%"}}>
-    <div className={classes.onboard}>
+    <section style= {{"display":"flex","justifyContent": "center", "width":"100%", "backgroundColor": "darkslategray"}}>
+    <div className={classes.onboard} style = {{"backgroundColor":"white"}}>
 
       <h2 class="stepheader" >
           <br />
