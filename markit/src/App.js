@@ -12,6 +12,7 @@ import ApplicationTabs from "./components/myApplication/tab"
 import NavigationBar from './navbar';
 import Course from './components/courses/Course';
 import CourseDetail from './components/courses/CourseDetail';
+import OnBoadingProcess from "./components/onboarding/OnBoardingProcess";
 import HiringManagment from './components/hiring-management/HiringManagment';
 
 const useStyles = makeStyles((theme) => ({
@@ -69,6 +70,9 @@ function App() {
           exact path={"/courses/:id"}
           component={() => <CourseDetail />}
         />
+        <Route exact path="/onboarding" exact >
+          <OnBoadingProcess />
+          </Route>
         <Route path="/hiring-management">
           <HiringManagment></HiringManagment>
         </Route>

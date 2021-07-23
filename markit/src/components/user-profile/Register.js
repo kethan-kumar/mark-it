@@ -61,7 +61,7 @@ function Register() {
   const [validEmail, setvalidEmail] = useState(true);
   const [validTnC, setvalidTnC] = useState(true);
   const [tnc, settnc] = useState(false);
-
+  const [success, setSuccess] = React.useState(false);
   const [open, setOpen] = React.useState(false);
   const [isRegister, setisRegister] = useState(false);
   const [userExists, setuserExists] = useState(false);
@@ -163,9 +163,9 @@ function Register() {
         .then((response) => {
           console.log(response);
           if (response.status === 201) {
+            setSuccess(true);
             console.log('Registration successful!');
             sessionStorage.setItem('markit-email', email);
-            history.push('/home');
             setisRegister(true);
           } else if (response.status === 409) {
             console.log('User already exists');
@@ -180,20 +180,20 @@ function Register() {
     authenticateUser();
   };
 
-  // const handleRegistration = () => {
-  //   setisRegister(true);
-  // };
-
-  // const handleLogin = () => {
-  //   setisRegister(false);
-  // };
+  const handleSuccess = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setSuccess(false);
+    history.push('/home');
+  };
 
   const handleTnC = (tncValue) => {
     settnc(tncValue);
     setvalidTnC(tncValue);
   };
   return (
-    <div className="App">
+    <div >
       <Grid container spacing={3}>
         <Grid item lg={3} md={3}></Grid>
         <Grid item xs={12} lg={6} md={6}>
@@ -328,6 +328,11 @@ function Register() {
                   <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
                     <Alert onClose={handleClose} severity="warning">
                       User already registered!
+                    </Alert>
+                  </Snackbar>
+                  <Snackbar open={success} autoHideDuration={750} onClose={handleSuccess}>
+                    <Alert onClose={handleSuccess} severity="success">
+                      Registration successfull!
                     </Alert>
                   </Snackbar>
                 </Grid>

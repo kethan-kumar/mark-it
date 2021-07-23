@@ -40,15 +40,12 @@ function ResetPassword() {
     const cardStyle = {
         padding: 50,
         height: "auto",
-        width: 350,
+        width: "55%",
         margin: "112px auto",
     };
 
     const avatarStyle = { backgroundColor: "#000000" };
     const classes = useStyles();
-
-    // const [firstname, setfirstname] = useState("");
-    // const [lastname, setlastname] = useState("");
     const [password, setpassword] = useState("");
     const [confirmPassword, setconfirmPassword] = useState("");
     const [email, setemail] = useState("");
@@ -56,12 +53,10 @@ function ResetPassword() {
     const [mailSent, setmailSent] = useState(false);
     const [otpVerified, setotpVerified] = useState(false);
     const [resetSuccessful, setresetSuccessful] = useState(false);
-    const [mailFound, setmailFound] = useState(false);
     const [validEmail, setvalidEmail] = useState(true);
     const [validOTP, setvalidOTP] = useState(true);
     const [validPassword, setvalidPassword] = useState(true);
     const [validConfPwd, setvalidConfPwd] = useState(true);
-
     const [open, setOpen] = React.useState(false);
     const [resetAlert, setresetAlert] = useState(false);
     const reset_password_api = "/api/profile/update-user"
@@ -136,12 +131,9 @@ function ResetPassword() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        // handleUsername("firstname", firstname);
-        // handleUsername("lastname", lastname);
         handlePassword(password);
         handleConfirmPassword(confirmPassword);
         handleEmail(email);
-        //handleTnC(tnc);
         setOpen(false);
         setOpen(false);
         console.log("valid email:" + validEmail);
@@ -154,14 +146,11 @@ function ResetPassword() {
             async function sendMailUser() {
                 await axios.post(sendmail_api,
                     { 'email': email }).then((response) => {
-                        //console.log(response);
-                        //console.log('line 145');
                         if (response.status === 200) {
                             console.log('Email sent successfully!');
                             setmailSent(true);
                         } else if (response.status === 404) {
                             console.log('Email not found!');
-                            setmailFound(false);
                         }
                     }).catch((error) => {
                         console.log(error);
@@ -216,7 +205,7 @@ function ResetPassword() {
 
     if (!mailSent) {
         return (
-            <div className="App">
+            <div >
                 <Grid container spacing={3}>
                     <Grid item lg={3} md={3}></Grid>
                     <Grid item xs={12} lg={6} md={6}>
@@ -286,7 +275,7 @@ function ResetPassword() {
         );
     } else if (otpVerified && !resetSuccessful) {
         return (
-            <div className="App">
+            <div >
                 <Grid container spacing={3}>
                     <Grid item lg={3} md={3}></Grid>
                     <Grid item xs={12} lg={6} md={6}>
@@ -373,7 +362,7 @@ function ResetPassword() {
         );
     } else if (resetSuccessful) {
         return (
-            <div className="App">
+            <div >
                 <Grid container spacing={3}>
                     <Grid item lg={3} md={3}></Grid>
                     <Grid item xs={12} lg={6} md={6}>
@@ -408,7 +397,7 @@ function ResetPassword() {
         );
     } else {
         return (
-            <div className="App">
+            <div >
                 <Grid container spacing={3}>
                     <Grid item lg={3} md={3}></Grid>
                     <Grid item xs={12} lg={6} md={6}>
