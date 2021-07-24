@@ -98,7 +98,6 @@ function Login() {
 
               //User session
               sessionStorage.setItem('markit-email', email);
-              console.log(sessionStorage.getItem('markit-email'));
               console.log('setsuccess:' + success);
             }
           }).catch((error) => {
