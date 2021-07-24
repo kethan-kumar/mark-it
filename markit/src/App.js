@@ -63,16 +63,16 @@ function App() {
           component={() => <Course />}
         />
         <Route
-            exact path={"/courses"}
-            component={() => <Course />}
-          />
-          <Route
+          exact path={"/courses"}
+          component={() => <Course />}
+        />
+        <Route
           exact path={"/courses/:id"}
           component={() => <CourseDetail />}
         />
         <Route exact path="/onboarding" exact >
           <OnBoadingProcess />
-          </Route>
+        </Route>
         <Route path="/hiring-management">
           <HiringManagment></HiringManagment>
         </Route>

@@ -32,6 +32,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -42,11 +43,16 @@
 }
 
 
-.navbar-dark .navbar-nav .active>.nav-link, .navbar-dark .navbar-nav .nav-link.active,.navbar-dark .navbar-nav .nav-link:hover, .navbar-dark .navbar-nav .nav-link.show, .navbar-dark .navbar-nav .show>.nav-link {
+.navbar-dark .navbar-nav .active>.nav-link,
+.navbar-dark .navbar-nav .nav-link.active,
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link.show,
+.navbar-dark .navbar-nav .show>.nav-link {
   color: #ffc800;
 }
+
 /*Author: Theresa */
-.side-bar{
+.side-bar {
   align-items: flex-end;
   color: black;
   flex-grow: 1;
@@ -69,22 +75,22 @@
   background-color: white;
 }
 
-.search-bar-section{
+.search-bar-section {
   margin-bottom: 10px;
-    max-width: 500px;
-    text-align: center;
-    align-items: center;
-    margin-top: 70px;
-    justify-content: center;
-    margin-left: 360px;
+  max-width: 500px;
+  text-align: center;
+  align-items: center;
+  margin-top: 70px;
+  justify-content: center;
+  margin-left: 360px;
 }
 
-.search-bar{
+.search-bar {
   background-color: #daddd8;
-    padding-right: 13px;
-    padding-top: 3px;
-    padding-left: 13px;
-    border-style: none;
+  padding-right: 13px;
+  padding-top: 3px;
+  padding-left: 13px;
+  border-style: none;
 }
 
 .title-header {
@@ -103,7 +109,7 @@
   text-align: center;
 }
 
-.click-icon{
+.click-icon {
   text-align: right;
   float: right;
   padding-right: 2px;
@@ -120,11 +126,11 @@
   margin-bottom: 16px;
 }
 
-.card-badge{
+.card-badge {
   color: #F1D008;
 }
 
-.form-row{
+.form-row {
   padding: 23px 0 17px 0;
 }
 
@@ -134,12 +140,12 @@
   font-size: 17px;
 }
 
-.header-course-detail{
+.header-course-detail {
   padding: 19px 9px 9px 21px;
   margin: 10px 20px 0px
 }
 
-.course-collaborator{
+.course-collaborator {
   float: right;
 }
 
@@ -147,7 +153,7 @@
   margin: 0 41px;
 }
 
-.edit-field{
+.edit-field {
   background-color: lightgray !important;
 }
 
@@ -156,8 +162,8 @@
   margin-top: 73px;
 }
 
-.HM-container{
+.HM-container {
   margin-top: 77px;
   color: black;
-  text-align: left !important; 
+  text-align: left !important;
 }

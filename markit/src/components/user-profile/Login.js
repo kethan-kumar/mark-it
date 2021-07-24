@@ -22,7 +22,6 @@ import { useState } from "react";
 import axios from 'axios';
 import markit_logo from "../images/markit_logo.png";
 
-
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
