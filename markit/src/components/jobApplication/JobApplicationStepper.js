@@ -162,7 +162,7 @@ export default function JobApplicationStepper({match}) {
   };
 
   return (
-    <section style= {{"display":"flex","justifyContent": "center", "width":"100%", "backgroundColor": "darkslategray"}}>
+    <section style= {{"display":"flex","justifyContent": "center", "width":"100%", "color":"black"}}>
       <Card style={{ width: '70%', height: 'auto', 'marginTop':'5%', "text-align": "left",'backgroundColor': 'lightgrey'}}>
       
         <Card.Body>
