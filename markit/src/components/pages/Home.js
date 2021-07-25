@@ -5,7 +5,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Box from '@material-ui/core/Box';
 import markit_logo from "../images/markit_logo.png";
-import home from "../images/home.jpg";
 
 const useStyles = makeStyles((theme) => ({
   margin: {
@@ -24,7 +23,7 @@ const cardStyle = {
   padding: 50,
   height: "auto",
   width: "50%",
-  margin: "112px auto",
+  margin: "15% auto",
 };
 
 const Home = () => {

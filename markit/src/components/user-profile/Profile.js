@@ -45,9 +45,8 @@ const useStyles = makeStyles((theme) => ({
 function Profile() {
     const cardStyle = {
         padding: 50,
-        height: "auto",
         width: 400,
-        margin: "60px auto",
+        margin: "15% auto",
     };
     const avatarStyle = { backgroundColor: "#000000" };
     const classes = useStyles();

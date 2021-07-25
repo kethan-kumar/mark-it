@@ -41,7 +41,7 @@ function ResetPassword() {
         padding: 50,
         height: "auto",
         width: "55%",
-        margin: "112px auto",
+        margin: "15% auto",
     };
 
     const avatarStyle = { backgroundColor: "#000000" };

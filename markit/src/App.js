@@ -1,11 +1,11 @@
 import "./App.css";
-import React from "react";
+import { React, useState } from "react";
 import Login from "./components/user-profile/Login";
 import Register from "./components/user-profile/Register";
 import Profile from "./components/user-profile/Profile";
 import ResetPassword from "./components/user-profile/ResetPassword";
 import Home from "./components/pages/Home";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import JobApplicationStepper from "./components/jobApplication/JobApplicationStepper";
 import ApplicationTabs from "./components/myApplication/tab"
@@ -22,11 +22,26 @@ const useStyles = makeStyles((theme) => ({
   extendedIcon: {
     marginRight: theme.spacing(1),
   },
-  backgroundImage: 'url({home})',
 }));
 
 function App() {
   const classes = useStyles();
+  const [loggedIn, setloggedIn] = useState(false);
+  if (sessionStorage.getItem('markit-email') === null) {
+    sessionStorage.setItem('markit-email', "");
+  }
+  if (sessionStorage.getItem('markit-email')) {
+    setloggedIn(true);
+  }
+  console.log(sessionStorage.getItem('markit-email'));
+
+  // useEffect(() => {
+  //   effect
+  //   return () => {
+  //     cleanup
+  //   }
+  // }, [loggedIn])
+
   return (
     <div className="App">
       <header>
@@ -37,11 +52,12 @@ function App() {
         
       </AppBar> */}
       <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
+
         <Route path="/login">
           <Login></Login>
+        </Route>
+        <Route exact path="/">
+          <Home />
         </Route>
         <Route path="/register">
           <Register></Register>

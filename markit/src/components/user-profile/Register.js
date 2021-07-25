@@ -41,7 +41,7 @@ function Register() {
     padding: 50,
     height: "auto",
     width: "375px",
-    margin: "75px auto",
+    margin: "12.5% auto",
   };
   const avatarStyle = { backgroundColor: "#000000" };
   const classes = useStyles();
