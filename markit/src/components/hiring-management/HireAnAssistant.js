@@ -22,6 +22,14 @@ function HireAnAssistant() {
     const [inviteSuccess, setinviteSuccess] = useState(false)
     const [coursesLoading, setcoursesLoading] = useState(true)
     const [coursesList, setcoursesList] = useState([])
+    const [applicantList, setapplicantList] = useState([])
+    const [interviewed, setinterviewed] = useState(true)
+    const [newApplicant, setnewApplicant] = useState(false)
+    const [toggle, settoggle] = useState(false)
+    const [selectedValue, setselectedValue] = useState('a')
+    const [courseNotSelected, setcourseNotSelected] = useState(true)
+    const [applicantsLoading, setapplicantsLoading] = useState(true)
+    const [course, setcourse] = useState("", null)
 
     const hire_assistant_api = "/api/hiring-management/hire-assistant";
     const check_user_api = "/api/hiring-management/check-user";
@@ -41,7 +49,76 @@ function HireAnAssistant() {
             });
         }
         getcourses()
-    }, []);
+    }, [assistantCourse,position]);
+
+    const updateRadio = event => {
+        setselectedValue(event.target.value)
+        settoggle(!toggle)
+    }
+
+    const updateApplicants = event => {
+        // console.log(event.target.value)
+        let items = []
+        async function getapplicants() {
+            await axios.get("/api/hiring-management/getApplicantsByCourseAndJob", {
+                params: {
+                    'course': event.target.value,
+                    'jobPosition': position
+                }
+            })
+                .then((response) => {
+                    if (response.status === 200) {
+                        // console.log(response.data.courses);
+                        items.push(<option>{""}</option>);
+                        for (let i = 0; i < response.data.applicants.length; i++) {
+                            // console.log(response.data)
+                            items.push(<option>{response.data.applicants[i].email}</option>);
+                        }
+                        setapplicantList(items)
+                        setapplicantsLoading(false)
+                    }
+                }).catch((error) => {
+                    // console.log(error.response.data.message);
+                    items.push(<option>{error.response.data.message}</option>);
+                    setapplicantList(items)
+                    setapplicantsLoading(false)
+                });
+        }
+        setassistantCourse(event.target.value)
+        setcourseNotSelected(false)
+        getapplicants()
+    }
+
+    const updatePosition = event => {
+        let items = []
+        setposition(event.target.value)
+        async function getapplicants() {
+            await axios.get("/api/hiring-management/getApplicantsByCourseAndJob", {
+                params: {
+                    'course': assistantCourse,
+                    'jobPosition': event.target.value
+                }
+            })
+                .then((response) => {
+                    if (response.status === 200) {
+                        // console.log(response.data.courses);
+                        items.push(<option>{""}</option>);
+                        for (let i = 0; i < response.data.applicants.length; i++) {
+                            // console.log(response.data)
+                            items.push(<option>{response.data.applicants[i].email}</option>);
+                        }
+                        setapplicantList(items)
+                        setapplicantsLoading(false)
+                    }
+                }).catch((error) => {
+                    // console.log(error.response.data.message);
+                    items.push(<option>{error.response.data.message}</option>);
+                    setapplicantList(items)
+                    setapplicantsLoading(false)
+                });
+        }
+        getapplicants()
+    }
 
     const hireAssistant = event => {
         event.preventDefault();
@@ -118,7 +195,7 @@ function HireAnAssistant() {
                         <Container fluid>
                             <Row>
                                 <Col>
-                                    <Form.Control as="select" onChange={event => setassistantCourse(event.target.value)}>
+                                    <Form.Control as="select" onChange={updateApplicants}>
                                         {
                                             coursesLoading ? <option>Loading...</option> : coursesList
                                         }
@@ -128,7 +205,7 @@ function HireAnAssistant() {
                                     </Form.Text>
                                 </Col>
                                 <Col>
-                                    <Form.Control as="select" onChange={event => setposition(event.target.value)}>
+                                    <Form.Control as="select" onChange={updatePosition}>
                                         <option>TA45</option>
                                         <option>Marker</option>
                                     </Form.Control>
@@ -139,7 +216,33 @@ function HireAnAssistant() {
                             </Row>
                             <Row>
                                 <Col>
-                                    <Form.Control type="email" placeholder="example@mail.com" onChange={event => setassistantEmail(event.target.value)} required />
+                                    <Form.Check type="radio" name="check" id="interviewed" value='a' label="Interviewed applicant" onChange={updateRadio} checked={selectedValue === 'a'} />
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col>
+                                    <Form.Control as="select" disabled={toggle} onChange={event => setassistantEmail(event.target.value)}>
+                                        {
+                                            courseNotSelected ?
+                                                <option>Select a course</option> :
+                                                applicantsLoading ? <
+                                                    option>Loading..</option> :
+                                                    applicantList
+                                        }
+                                    </Form.Control>
+                                    <Form.Text className="text-muted">
+                                        Select the applicant.
+                                    </Form.Text>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col>
+                                    <Form.Check type="radio" name="check" id="newApplicant" value='b' onChange={updateRadio} label="New applicant" checked={selectedValue === 'b'} />
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col>
+                                    <Form.Control type="email" disabled={!toggle} placeholder="example@mail.com" onChange={event => setassistantEmail(event.target.value)} required />
                                     <Form.Text className="text-muted">
                                         Enter the email address of the assistant you want to hire.
                                     </Form.Text>
@@ -149,7 +252,7 @@ function HireAnAssistant() {
                     </Form.Group>
                     {
                         hireAssistantState ?
-                            assistantEmailExists && validAssistantEmail && hireCourseState && inviteSuccess?
+                            assistantEmailExists && validAssistantEmail && hireCourseState && inviteSuccess ?
                                 <Alert variant="success">
                                     {hireAssistantEmailAlertMsg}
                                 </Alert>
@@ -161,6 +264,7 @@ function HireAnAssistant() {
                             null
                     }
                     <Button variant="primary" type="submit" >Hire</Button>
+                    <Button variant="danger" type="submit" disabled={toggle}>Reject</Button>
                 </Form>
             </Card.Body>
         </Card>

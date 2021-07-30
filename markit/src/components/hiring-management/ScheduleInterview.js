@@ -29,7 +29,6 @@ function ScheduleInterview() {
     const [applicantList, setapplicantList] = useState([])
     const [applicantsLoading, setapplicantsLoading] = useState(true)
     const [courseNotSelected, setcourseNotSelected] = useState(true)
-    const firstCall = useRef(true);
 
     const schedule_interview_api = "/api/hiring-management/schedule-interview";
     const job_interview_status_api = "/api/hiring-management/update-job-application-status";
@@ -48,35 +47,8 @@ function ScheduleInterview() {
                 setcoursesLoading(false)
             });
         }
-        let aitems = []
-        async function getapplicants() {
-            await axios.get("/api/hiring-management/getApplicantsByCourseAndJob", {
-                params: {
-                    'course': course,
-                    'jobPosition': position
-                }
-            })
-                .then((response) => {
-                    if (response.status === 200) {
-                        // console.log(response.data.courses);
-                        aitems.push(<option>{""}</option>);
-                        for (let i = 0; i < response.data.applicants.length; i++) {
-                            // console.log(response.data)
-                            aitems.push(<option>{response.data.applicants[i].email}</option>);
-                        }
-                        setapplicantList(aitems)
-                        setapplicantsLoading(false)
-                    }
-                }).catch((error) => {
-                    // console.log(error.response.data.message);
-                    aitems.push(<option>{error.response.data.message}</option>);
-                    setapplicantList(aitems)
-                    setapplicantsLoading(false)
-                });
-        }
         getcourses()
-        //getapplicants()
-    }, [course]);
+    }, [course,position]);
 
     const handleDateChange = (date) => {
         setinterviewDateAndTime(date);
@@ -112,6 +84,37 @@ function ScheduleInterview() {
         }
         setcourse(event.target.value)
         setcourseNotSelected(false)
+        getapplicants()
+    }
+
+    const updatePosition = event => {
+        let items = []
+        setposition(event.target.value)
+        async function getapplicants() {
+            await axios.get("/api/hiring-management/getApplicantsByCourseAndJob", {
+                params: {
+                    'course': course,
+                    'jobPosition': event.target.value
+                }
+            })
+                .then((response) => {
+                    if (response.status === 200) {
+                        // console.log(response.data.courses);
+                        items.push(<option>{""}</option>);
+                        for (let i = 0; i < response.data.applicants.length; i++) {
+                            // console.log(response.data)
+                            items.push(<option>{response.data.applicants[i].email}</option>);
+                        }
+                        setapplicantList(items)
+                        setapplicantsLoading(false)
+                    }
+                }).catch((error) => {
+                    // console.log(error.response.data.message);
+                    items.push(<option>{error.response.data.message}</option>);
+                    setapplicantList(items)
+                    setapplicantsLoading(false)
+                });
+        }
         getapplicants()
     }
 
@@ -235,7 +238,7 @@ function ScheduleInterview() {
                                     </Form.Text>
                                 </Col>
                                 <Col>
-                                    <Form.Control as="select" onChange={event => setposition(event.target.value)}>
+                                    <Form.Control as="select" onChange={updatePosition}>
                                         <option>TA45</option>
                                         <option>Marker</option>
                                     </Form.Control>
