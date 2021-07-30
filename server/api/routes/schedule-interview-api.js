@@ -57,7 +57,7 @@ router.put('/update-job-application-status', (req, res) => {
     jobApplication.findOneAndUpdate(filter, update, { new: true })
         .then((results) => {
             res.status(200).json({
-                message: 'Job updated successfully!',
+                message: 'Job application updated.',
                 result:results
             });
         }).catch((err) => {
@@ -140,6 +140,41 @@ router.get('/getInterviewScheduled/:email', (req, res) => {
         })
     }
 
+});
+
+
+router.delete('/delete-scheduled-interview', (req, res) => {
+
+    // console.log(req.query.applicantEmail)
+    // console.log(req.query.position)
+    // console.log(req.query.course)
+
+    filter = {
+        applicantEmail: req.query.applicantEmail,
+        position: req.query.position,
+        course: req.query.course
+    }
+
+    scheduleInterview.findOneAndDelete( filter )
+        .then((results) => {
+            //console.log(results);
+            if (results) {
+                return res.status(200).json(
+                    {
+                        success: true,
+                        message: "Interview removed",
+                        interview: results
+                    })
+            } else {
+                res.status(400).json({message: 'Interview does not exists'});
+            }
+        }).catch((err) => {
+            console.log(err);
+            res.status(500).json({
+                message: 'Internal Server Error',
+                error: err
+            });
+        });
 });
 
 module.exports = router;
