@@ -23,16 +23,16 @@ function HireAnAssistant() {
     const [coursesLoading, setcoursesLoading] = useState(true)
     const [coursesList, setcoursesList] = useState([])
     const [applicantList, setapplicantList] = useState([])
-    const [interviewed, setinterviewed] = useState(true)
-    const [newApplicant, setnewApplicant] = useState(false)
     const [toggle, settoggle] = useState(false)
     const [selectedValue, setselectedValue] = useState('a')
     const [courseNotSelected, setcourseNotSelected] = useState(true)
     const [applicantsLoading, setapplicantsLoading] = useState(true)
-    const [course, setcourse] = useState("", null)
+    const [submitType, setsubmitType] = useState("")
 
     const hire_assistant_api = "/api/hiring-management/hire-assistant";
     const check_user_api = "/api/hiring-management/check-user";
+    const job_interview_status_api = "/api/hiring-management/update-job-application-status";
+    const delete_scheduled_interview_api = "/api/hiring-management/delete-scheduled-interview"
 
     useEffect(() => {
         let items = []
@@ -49,7 +49,7 @@ function HireAnAssistant() {
             });
         }
         getcourses()
-    }, [assistantCourse,position]);
+    }, [assistantCourse, position]);
 
     const updateRadio = event => {
         setselectedValue(event.target.value)
@@ -60,10 +60,11 @@ function HireAnAssistant() {
         // console.log(event.target.value)
         let items = []
         async function getapplicants() {
-            await axios.get("/api/hiring-management/getApplicantsByCourseAndJob", {
+            await axios.get("/api/hiring-management/getInterviewScheduledByCourseAndJob", {
                 params: {
                     'course': event.target.value,
-                    'jobPosition': position
+                    'jobPosition': position,
+                    'interviewDateAndTime': new Date()
                 }
             })
                 .then((response) => {
@@ -72,7 +73,7 @@ function HireAnAssistant() {
                         items.push(<option>{""}</option>);
                         for (let i = 0; i < response.data.applicants.length; i++) {
                             // console.log(response.data)
-                            items.push(<option>{response.data.applicants[i].email}</option>);
+                            items.push(<option>{response.data.applicants[i].applicantEmail}</option>);
                         }
                         setapplicantList(items)
                         setapplicantsLoading(false)
@@ -93,10 +94,11 @@ function HireAnAssistant() {
         let items = []
         setposition(event.target.value)
         async function getapplicants() {
-            await axios.get("/api/hiring-management/getApplicantsByCourseAndJob", {
+            await axios.get("/api/hiring-management/getInterviewScheduledByCourseAndJob", {
                 params: {
                     'course': assistantCourse,
-                    'jobPosition': event.target.value
+                    'jobPosition': event.target.value,
+                    'interviewDateAndTime': new Date()
                 }
             })
                 .then((response) => {
@@ -105,7 +107,7 @@ function HireAnAssistant() {
                         items.push(<option>{""}</option>);
                         for (let i = 0; i < response.data.applicants.length; i++) {
                             // console.log(response.data)
-                            items.push(<option>{response.data.applicants[i].email}</option>);
+                            items.push(<option>{response.data.applicants[i].applicantEmail}</option>);
                         }
                         setapplicantList(items)
                         setapplicantsLoading(false)
@@ -132,53 +134,140 @@ function HireAnAssistant() {
         }
         else {
             sethireCourseState(true);
-            if (!(/\S+@\S+\.\S+/.test(assistantEmail))) {
-                setvalidAssistantEmail(false);
-                // console.log("invalid mail")
-                sethireAssistantEmailAlertMsg("Invalid email.");
+            if (!toggle) {
+                if (assistantEmail === "" || assistantEmail === "No Applicants Found") {
+                    setvalidAssistantEmail(false);
+                    sethireAssistantEmailAlertMsg("Please select an applicant.");
+                }
+                else {
+                    let noInterview = false
+                    setvalidAssistantEmail(true);
+                    setassistantEmailExists(true);
+                    async function updateJobApplicationStatus() {
+                        await axios.put(job_interview_status_api,
+                            {
+                                'email': assistantEmail,
+                                'course': assistantCourse,
+                                'jobPosition': position,
+                                'status': submitType
+                            })
+                            .then((response) => {
+                                if (response.status === 200) {
+                                    // console.log(' successful!');
+                                    setinviteSuccess(true)
+                                }
+                            }).catch((error) => {
+                                sethireAssistantEmailAlertMsg(error.response.data.message);
+                                setinviteSuccess(false)
+                            });
+
+                        await axios.delete(delete_scheduled_interview_api,
+                            {
+                                params: {
+                                    'applicantEmail': assistantEmail,
+                                    'position': position,
+                                    'course': assistantCourse
+                                }
+                            })
+                            .then((response) => {
+                                if (response.status === 200) {
+                                    // console.log(' successful!');
+                                    setinviteSuccess(true)
+                                }
+                            }).catch((error) => {
+                                noInterview = true
+                                sethireAssistantEmailAlertMsg("Applicant job application already denied.");
+                                setinviteSuccess(false)
+                            });
+
+                        if (submitType === 'Hired') {
+                            await axios.post(hire_assistant_api,
+                                {
+                                    'course': assistantCourse,
+                                    'hirerId': hirerId,
+                                    'applicantEmail': assistantEmail,
+                                    'jobPosition': position,
+                                    'status': 'Under Review',
+                                    'comments': 'Under Review'
+                                })
+                                .then((response) => {
+                                    if (response.status === 200) {
+                                        // console.log(' successful!');
+                                        setinviteSuccess(true)
+                                        sethireAssistantEmailAlertMsg("Job offer sent.");
+                                    }
+                                }).catch((error) => {
+                                    sethireAssistantEmailAlertMsg(error.response.data.message);
+                                    setinviteSuccess(false)
+                                });
+                        }
+                        else {
+                            if (noInterview) {
+                                setinviteSuccess(false)
+                                sethireAssistantEmailAlertMsg("Applicant job application already denied.");
+                            } else {
+                                setinviteSuccess(true)
+                                sethireAssistantEmailAlertMsg("Applicant Declined.");
+                            }
+                        }
+                    }
+                    updateJobApplicationStatus();
+                    //sethireAssistantEmailAlertMsg(response.data.message)
+                    //setinviteSuccess(true)
+
+                }
             }
             else {
-                //hire-assistant
-                setvalidAssistantEmail(true);
-                async function checkForUser() {
-                    await axios.get(check_user_api,
-                        {
-                            params: {
-                                'email': assistantEmail
-                            }
-                        })
-                        .then((response) => {
-                            if (response.status === 200) {
-                                // console.log(' successful!');
-                                setassistantEmailExists(true);
-                                async function sendInvite() {
-                                    await axios.post(hire_assistant_api,
-                                        {
-                                            'course': assistantCourse,
-                                            'hirerId': hirerId,
-                                            'applicantEmail': assistantEmail,
-                                            'jobPosition': position,
-                                            'status': 'Under Review'
-                                        })
-                                        .then((response) => {
-                                            if (response.status === 200) {
-                                                // console.log(' successful!');
-                                                setinviteSuccess(true)
-                                                sethireAssistantEmailAlertMsg(response.data.message);
-                                            }
-                                        }).catch((error) => {
-                                            sethireAssistantEmailAlertMsg(error.response.data.message);
-                                            setinviteSuccess(false)
-                                        });
-                                }
-                                sendInvite();
-                            }
-                        }).catch((error) => {
-                            setassistantEmailExists(false);
-                            sethireAssistantEmailAlertMsg(error.response.data.message);
-                        });
+                if (!(/\S+@\S+\.\S+/.test(assistantEmail))) {
+                    setvalidAssistantEmail(false);
+                    // console.log("invalid mail")
+                    sethireAssistantEmailAlertMsg("Invalid email.");
                 }
-                checkForUser();
+                else {
+                    //hire-assistant
+                    setvalidAssistantEmail(true);
+                    async function checkForUser() {
+                        await axios.get(check_user_api,
+                            {
+                                params: {
+                                    'email': assistantEmail
+                                }
+                            })
+                            .then((response) => {
+                                if (response.status === 200) {
+                                    // console.log(' successful!');
+                                    setassistantEmailExists(true);
+                                    async function sendInvite() {
+                                        await axios.post(hire_assistant_api,
+                                            {
+                                                'course': assistantCourse,
+                                                'hirerId': hirerId,
+                                                'applicantEmail': assistantEmail,
+                                                'jobPosition': position,
+                                                'status': 'Under Review',
+                                                'comments': 'Under Review',
+
+                                            })
+                                            .then((response) => {
+                                                if (response.status === 200) {
+                                                    // console.log(' successful!');
+                                                    setinviteSuccess(true)
+                                                    sethireAssistantEmailAlertMsg(response.data.message);
+                                                }
+                                            }).catch((error) => {
+                                                sethireAssistantEmailAlertMsg(error.response.data.message);
+                                                setinviteSuccess(false)
+                                            });
+                                    }
+                                    sendInvite();
+                                }
+                            }).catch((error) => {
+                                setassistantEmailExists(false);
+                                sethireAssistantEmailAlertMsg(error.response.data.message);
+                            });
+                    }
+                    checkForUser();
+                }
             }
         }
     }
@@ -263,8 +352,8 @@ function HireAnAssistant() {
                             :
                             null
                     }
-                    <Button variant="primary" type="submit" >Hire</Button>
-                    <Button variant="danger" type="submit" disabled={toggle}>Reject</Button>
+                    <Button variant="primary" type="submit" name="submit" value="Hired" onClick={event => setsubmitType(event.target.value)}>Hire</Button>{'   '}
+                    <Button variant="danger" type="submit" name="submit" value="Declined" onClick={event => setsubmitType(event.target.value)} disabled={toggle}>Decline</Button>
                 </Form>
             </Card.Body>
         </Card>

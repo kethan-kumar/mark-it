@@ -5,6 +5,7 @@ const router = express.Router();
 const courseModel = require("../models/courseSchema");
 const jobOffersSchema = require('../models/jobOffersSchema');
 const JobPostingModel = require('../models/jobPostingSchema');
+const scheduleInterview = require('../models/scheduleInterviewSchema');
 
 router.use(express.urlencoded({ extended: false }));
 router.use(express.json());
@@ -145,7 +146,40 @@ router.put('/update-job-offer-status', (req, res) => {
         });
 });
 
-
+router.get('/getInterviewScheduledByCourseAndJob', (req, res) => {
+    // console.log(req.query.course)
+    // console.log(req.query.interviewDateAndTime)
+    // console.log(req.query.jobPosition)
+    const filter = {
+        course: req.query.course,
+        position: req.query.jobPosition,
+        interviewDateAndTime: { $lt: req.query.interviewDateAndTime }
+    }
+    scheduleInterview.find(filter)
+        .then((results) => {
+                // console.log(results);
+                if (results && results.length > 0) {
+                    return res.status(200).json(
+                        {
+                            success: true,
+                            message: "Applicants Found",
+                            applicants: results
+                        })
+                } else {
+                    res.status(404).json({
+                        success: true,
+                        message: "No Applicants Found",
+                        applicants: []
+                    });
+                }
+            }).catch((err) => {
+                console.log(err);
+                res.status(500).json({
+                    message: 'Internal Server Error',
+                    result: []
+                });
+            });
+});
 
         
     
