@@ -208,7 +208,7 @@ render(){
         
         <div class="row">
         <div class="col-12 stepButtonClass" >
-            <input type="button"  class="btn stepButtonCls "   style={{"width": '50%',"background-color":"rgb(255,200,0)" ,"color":"white"  }}
+            <input type="button"  class="btn stepButtonCls "   style={{"width": '50%',"background-color":"rgb(255,200,0)" ,"color":"black"  }}
                  disabled={(!this.state.firstname || 
                                 !this.state.lastname ||
                                        !this.state.email || 
