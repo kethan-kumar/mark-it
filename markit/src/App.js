@@ -14,6 +14,7 @@ import Course from './components/courses/Course';
 import CourseDetail from './components/courses/CourseDetail';
 import OnBoadingProcess from "./components/onboarding/OnBoardingProcess";
 import HiringManagment from './components/hiring-management/HiringManagment';
+import JobPosting from './components/jobPosting/JobPosting'
 
 const useStyles = makeStyles((theme) => ({
   margin: {
@@ -92,6 +93,7 @@ function App() {
         <Route path="/hiring-management">
           <HiringManagment></HiringManagment>
         </Route>
+        <Route path="/jobPosting/:course" exact component={JobPosting} />
         <Route>
           <h1>Invalid URL</h1>
         </Route>
