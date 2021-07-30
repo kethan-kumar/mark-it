@@ -127,7 +127,7 @@ const OnBoadingProcess = () => {
   }
 
   const ModalDiv1 = () => (
-    <div id="results" className="search-results">
+    <div id="results" className="search-results" style={{"color":"black"  }}>
      <h6><u>GENERAL INSTRUCTIONS</u></h6>
 
      <label><b>Section A - Student status</b></label>
@@ -150,7 +150,7 @@ const OnBoadingProcess = () => {
   )
 
   const ModalDiv2 = () => (
-    <div id="results" className="search-results">
+    <div id="results" className="search-results" style={{"color":"black"  }}>
               <h6><u>EMPLOYEE IDENTIFICATION</u></h6>
 
         <label><b>Section A - Personal Details</b></label>
@@ -171,7 +171,7 @@ const OnBoadingProcess = () => {
   )
 
   const ModalDiv3 = () => (
-    <div id="results" className="search-results">
+    <div id="results" className="search-results" style={{"color":"black"  }}>
       
       <h6><u>BANKING INFORMATION</u></h6>
 
@@ -192,7 +192,7 @@ const OnBoadingProcess = () => {
   )
 
   const ModalDiv4 = () => (
-    <div id="results" className="search-results">
+    <div id="results" className="search-results" style={{"color":"black"  }}>
       <h6><u>PAY PROCESSES</u></h6>
 
         <label><b>Section A - Marker Pay</b></label>
