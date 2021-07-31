@@ -70,7 +70,7 @@ const NavigationBar = () => {
                                 <Nav.Link href="#onboarding">ONBOARDING</Nav.Link>
                                 <Nav.Link href="/#/profile">PROFILE</Nav.Link>
                                 <Nav.Link href="/#/reset">RESET</Nav.Link>
-                                <Nav.Link href="#/home" onClick={handleToggle}>LOGOUT</Nav.Link>
+                                <Nav.Link href="#/" onClick={handleToggle}>LOGOUT</Nav.Link>
                             </Nav>
                         </Navbar.Collapse>
                     </Container>
