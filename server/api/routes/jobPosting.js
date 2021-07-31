@@ -48,13 +48,13 @@ router.get('/getPosting/:courseId', (req, res) => {
         return res.status(200).json(
           {
             success: true,
-            filteredPostings:filteredPostings
+            jobPostings:filteredPostings
           })
       }
       return res.status(404).json(
         {
           success: false,
-          filteredPostings:[],
+          jobPostings:[],
           message:"No Job Postings Available for this course",
         })
       
@@ -62,7 +62,7 @@ router.get('/getPosting/:courseId', (req, res) => {
       return res.status(500).json(
         {
           success: false,
-          filteredPostings:[],
+          jobPostings:[],
           message:"Internal Server Error occurred while retrieving job postings ",
           error:error
         })
@@ -80,7 +80,7 @@ router.get('/getPosting/:courseId', (req, res) => {
 });
 
 //update job posting on edit
-router.put('/updatePositing/:courseId/:position', (req, res) => {
+router.put('/updatePosting/:courseId/:position', (req, res) => {
     courseId = req.params.courseId
     positionId = req.params.position
     const filter = {

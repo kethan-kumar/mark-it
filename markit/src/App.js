@@ -14,33 +14,11 @@ import Course from './components/courses/Course';
 import CourseDetail from './components/courses/CourseDetail';
 import OnBoadingProcess from "./components/onboarding/OnBoardingProcess";
 import HiringManagment from './components/hiring-management/HiringManagment';
-
-const useStyles = makeStyles((theme) => ({
-  margin: {
-    margin: theme.spacing(1),
-  },
-  extendedIcon: {
-    marginRight: theme.spacing(1),
-  },
-}));
+import JobPosting from './components/jobPosting/JobPosting'
+import ProtectedRoute from "./components/pages/ProtectedRoute";
+import InvalidURL from "./components/pages/403";
 
 function App() {
-  const classes = useStyles();
-  const [loggedIn, setloggedIn] = useState(false);
-  if (sessionStorage.getItem('markit-email') === null) {
-    sessionStorage.setItem('markit-email', "");
-  }
-  if (sessionStorage.getItem('markit-email')) {
-    setloggedIn(true);
-  }
-  console.log(sessionStorage.getItem('markit-email'));
-
-  // useEffect(() => {
-  //   effect
-  //   return () => {
-  //     cleanup
-  //   }
-  // }, [loggedIn])
 
   return (
     <div className="App">
@@ -48,51 +26,55 @@ function App() {
         <NavigationBar></NavigationBar>
       </header>
 
-      {/* <AppBar className="nav-bar" position="static" color="blue">
-        
-      </AppBar> */}
       <Switch>
+        <Route exact path="/" component={Home} />
 
-        <Route path="/login">
-          <Login></Login>
-        </Route>
-        <Route exact path="/">
-          <Home />
-        </Route>
+        <Route exact path="/home" component={Home} />
+
+        <Route exact path="/login" component={Login} />
+
         <Route path="/register">
           <Register></Register>
         </Route>
-        <Route path="/profile">
-          <Profile></Profile>
-        </Route>
+
         <Route path="/reset">
           <ResetPassword></ResetPassword>
         </Route>
-        <Route exact path="/myApplication" exact component={ApplicationTabs} />
-        <Route exact path="/myApplication" exact >
-          <ApplicationTabs />
-        </Route>
 
-        <Route path="/jobApplication/:courseName/:jobPosition" exact component={JobApplicationStepper} />
-        <Route
+        <ProtectedRoute path="/profile"
+          component={Profile} />
+
+        <ProtectedRoute exact path="/myApplication" component={ApplicationTabs} />
+
+        <ProtectedRoute exact path="/jobApplication/:courseName/:jobPosition" component={JobApplicationStepper} />
+
+        <ProtectedRoute
           exact path={"/courses"}
           component={() => <Course />}
         />
-        <Route
+        <ProtectedRoute
+          exact path={"/courses"}
+          component={() => <Course />}
+        />
+        <ProtectedRoute
           exact path={"/courses/:id"}
           component={() => <CourseDetail />}
-        /> 
-        <Route exact path="/onboarding" exact >
-          <OnBoadingProcess />
+        />
+
+        <ProtectedRoute path="/onboarding"
+          component={OnBoadingProcess} />
+
+        <ProtectedRoute path="/hiring-management"
+          component={HiringManagment} />
+
+        <ProtectedRoute path="/jobPosting/:course" exact component={JobPosting} />
+
+        <Route path="/*">
+          <InvalidURL></InvalidURL>
         </Route>
-        <Route path="/hiring-management">
-          <HiringManagment></HiringManagment>
-        </Route>
-        <Route>
-          <h1>Invalid URL</h1>
-        </Route>
+
       </Switch>
-    </div>
+    </div >
   );
 }
 

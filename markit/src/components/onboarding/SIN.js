@@ -100,14 +100,14 @@ return(
             <div class="row">
                 <div class="col-6 stepButtonClass" >
 
-                    <input type="button"  class="btn "    style={{"width": '80%',"background-color":"black" ,"color":"white"  }}
+                    <input type="button"  class="btn "    style={{"width": '80%',"background-color":"black" ,"color":"rgb(255,200,0)"  }}
                                                                         
                         onClick={this.props.backFunction} value=
                         {"Go Back "} 
                      />
                     </div>
                     <div class="col-6 stepButtonClass">  
-                     <input type="button"  class="btn "     style={{"width": '80%',"background-color":"rgb(255,200,0)" ,"color":"white"  }}
+                     <input type="button"  class="btn "     style={{"width": '80%',"background-color":"rgb(255,200,0)" ,"color":"black"  }}
                         disabled={(!this.state.validPassword )}                                                 
                         onClick={this.props.nextFunction} value=
                         {this.props.currentStep === this.props.steps.length -1  ? "Submit"  :  "Go to Next Step "} 

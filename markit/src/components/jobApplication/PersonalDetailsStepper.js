@@ -153,7 +153,8 @@ const PersonalDetailsStepper = ({handleNext,mainForm}) => {
                                 <div>
                                     <TextField id="email" label="Email ID" type="text" name= "email" fullWidth margin="normal"
                                     onChange= {handleChange} value= {formValue.email}  error={checkIfError('email')}
-                                    helperText={checkIfError('email') ? errors.email : ''} onBlur ={handleBlur} />
+                                    helperText={checkIfError('email') ? errors.email : ''} onBlur ={handleBlur} 
+                                    disabled={mainForm.email?true:false} />
                                 </div>
                                 {/* Prefilled field based on course selected in the Jost Posting Page */}
                                 <div>
