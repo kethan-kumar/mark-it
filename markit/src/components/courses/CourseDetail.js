@@ -4,8 +4,11 @@ import { useLocation } from 'react-router';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Axios from 'axios';
 import { Container, Col, Row } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
+import { useHistory } from 'react-router';
 
 const CourseDetail = () => {
+    const history = useHistory();
     const location = useLocation();
     const id = location.state.course._id;
     const [collaboratorUserId, setCollaboratorUserId] = useState();
@@ -110,6 +113,8 @@ const CourseDetail = () => {
                     {collaboratorUserId === undefined && collaboratorCourseId === undefined
                         ? <button type="button" className="btn btn-success course-button" disabled>Edit</button>
                         : <button type="button" className="btn btn-success course-button" onClick={handleEditCourse}>Edit</button>}
+                        <div style={{"margin":"3px"}}>  <Button variant="warning" onClick= {()=>history.push('/jobPosting/'+navigatedCourseId)}>View Job Posting</Button></div>
+                   
                 </Col>
             </div>
             <article>
