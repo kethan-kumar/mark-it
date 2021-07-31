@@ -1,10 +1,8 @@
 import React from "react";
-import { Grid, Card } from "@material-ui/core";
-import { Avatar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import Box from '@material-ui/core/Box';
-import markit_logo from "../images/markit_logo.png";
+import Banner from "./Banner"
+import Footer from './Footer'
+import Content from "./Content"
 
 const useStyles = makeStyles((theme) => ({
   margin: {
@@ -19,38 +17,35 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const cardStyle = {
-  padding: 50,
-  height: "auto",
-  width: "50%",
-  margin: "15% auto",
-};
 
 const Home = () => {
   const classes = useStyles();
-  const avatarStyle = { backgroundColor: "#000000" };
+
 
   return (
-    <div className="App" >
-      <Grid container spacing={3}>
-        <Grid item lg={3} md={3}></Grid>
+    <div style={{"display":"flex", "flex-direction":"column"}}>
+      
+      <div >
+        <Banner></Banner>
+      </div>
 
-        <Grid item xs={12} lg={6} md={6}>
-          <Card style={cardStyle}>
-            <Grid align="center">
-              <Avatar alt="" src={markit_logo} style={avatarStyle} className={classes.large}></Avatar>
-              <Typography variant="body1" gutterBottom >
-                <Box fontFamily="Monospace" fontWeight="fontWeightBold" fontSize="h5.fontSize" m={1}>
-                  WELCOME TO MARKIT
-                </Box>
-              </Typography>
-            </Grid>
-          </Card>
-        </Grid>
+      <div  style={{background: "#343a40"}}>
+        <section style={{"display":"flex",  "margin":"10px","justifyContent": "space-evenly"}}>
+          <Content></Content>
+        </section>
 
-        <Grid item lg={3} md={3}></Grid>
-      </Grid>
+      </div>
+      
+
+      <section>
+        <Footer></Footer>
+      </section>
+      
+
     </div>
+   
+
+      
   );
 };
 

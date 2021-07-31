@@ -67,3 +67,7 @@ npm run build
 * Neharika Sehgal
 * Aadesh Shah
 * Suman Singh
+
+## Image sources:
+* Homepage Courses : https://elearningindustry.com/considerations-before-designing-effective-elearning-courses
+* Homepage Job Application: https://learning.shine.com/talenteconomy/career-help/how-to-write-a-job-application-letter/

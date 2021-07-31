@@ -129,7 +129,7 @@ export default function JobApplicationStepper({match}) {
   const [mainForm,setMainForm] = useState({
     firstName:'',
     lastName:'',
-    email:'',
+    email:sessionStorage.getItem('markit-email')?sessionStorage.getItem('markit-email') : '',
     jobPosition:params.jobPosition,
     course:params.courseName,
     degree:null,

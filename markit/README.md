@@ -67,3 +67,7 @@ npm run build
 * Neharika Sehgal
 * Aadesh Shah
 * Suman Singh
+
+REFERENCES
+/* CSS modified based on https://github.com/briancodex/react-website-v1/blob/master/src/components/HeroSection.css code 
+Modifications done are font sizing, media query and box shadow color  */

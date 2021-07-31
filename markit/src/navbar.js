@@ -56,21 +56,21 @@ const NavigationBar = () => {
             return (
                 <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" fixed="top">
                     <Container>
-                        <Navbar.Brand href="#home" style={{ 'color': '#ffffff' }}>
+                        <Navbar.Brand href="/" style={{ 'color': '#ffffff' }}>
                             MarkIT
                             <DoneIcon fontSize="large"></DoneIcon>
                         </Navbar.Brand>
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                         <Navbar.Collapse id="responsive-navbar-nav">
                             <Nav className="ml-auto">
-                                <Nav.Link href="#home">HOME</Nav.Link>
+                                <Nav.Link href="/">HOME</Nav.Link>
                                 <Nav.Link href="/#/courses">COURSES</Nav.Link>
-                                <Nav.Link href="/#/myApplication">MY APPLICATION</Nav.Link>
+                                <Nav.Link href={"/#/myApplication?email="+sessionStorage.getItem('markit-email') }>MY APPLICATION</Nav.Link>
                                 <Nav.Link href="#/hiring-management">HIRING</Nav.Link>
                                 <Nav.Link href="#onboarding">ONBOARDING</Nav.Link>
                                 <Nav.Link href="/#/profile">PROFILE</Nav.Link>
                                 <Nav.Link href="/#/reset">RESET</Nav.Link>
-                                <Nav.Link href="#/home" onClick={handleToggle}>LOGOUT</Nav.Link>
+                                <Nav.Link href="/" onClick={handleToggle}>LOGOUT</Nav.Link>
                             </Nav>
                         </Navbar.Collapse>
                     </Container>
@@ -80,14 +80,14 @@ const NavigationBar = () => {
             return (
                 <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" fixed="top">
                     <Container>
-                        <Navbar.Brand href="#home" style={{ 'color': '#ffc800' }}>
+                        <Navbar.Brand href="/" style={{ 'color': '#ffc800' }}>
                             MarkIT
                             <DoneIcon fontSize="large"></DoneIcon>
                         </Navbar.Brand>
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                         <Navbar.Collapse id="responsive-navbar-nav">
                             <Nav className="ml-auto">
-                                <Nav.Link href="#home">HOME</Nav.Link>
+                                <Nav.Link href="/">HOME</Nav.Link>
                                 <Nav.Link href="/#/login" >SIGN IN</Nav.Link>
                                 <Snackbar open={success} autoHideDuration={3000} onClose={handleSuccess}>
                                     <Alert onClose={handleSuccess} severity="success">
