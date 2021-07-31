@@ -22,7 +22,7 @@ export default class Acknowledgement extends React.Component {
 
         return (
 
-            <div class="stepDiv">
+            <div class="stepDiv" style={{"color":"black"  }}>
                 <br /><br />
                 <b>
                     <Typography className="stepTypos" variant="h5">
@@ -32,7 +32,8 @@ export default class Acknowledgement extends React.Component {
                 <br />
                 <form className="stepForm">
                 <p><input type="checkbox" onClick={this.fnValidateCheck}></input> &nbsp;
-                        I hereby declare, that all of the information I have provided is complete and true to the best of my knowledge * 
+                        I hereby declare, that all of the information I have provided is complete and true to the best of my knowledge 
+                        <font color="red">*</font>
                 </p>
 
                 <br /><br /><br/>
