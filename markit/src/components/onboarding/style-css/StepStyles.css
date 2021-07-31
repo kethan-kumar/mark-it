@@ -64,6 +64,11 @@
    color: rgb(255, 200, 0);
   }
 
+  .alert-custom{
+    background-color:rgb(247, 211, 81);
+    color:rgb(31, 30, 30)
+  }
+
   /*   rgb(255,200,0);   */
 
  .search-results{

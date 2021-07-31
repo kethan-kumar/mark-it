@@ -41,8 +41,8 @@ export default class Acknowledgement extends React.Component {
                 <div class="row">
                 <div class="col-6 stepButtonClass" >
 
-                    <input type="button"  class="btn "                       
-                        style={{"width": '80%',"background-color":"black" ,"color":"white"  }}                                                                        
+                    <input type="button"  class="btn stepButtonCls "                      
+                        style={{"width": '80%',"background-color":"black" ,"color":"rgb(255,200,0)"  }}                                                                        
                         onClick={this.props.backFunction} 
                         value={"Go Back "} 
                      />
@@ -50,10 +50,8 @@ export default class Acknowledgement extends React.Component {
                 </div>
                 <div class="col-6 stepButtonClass"> 
 
-                <input type="button"
-
-                    class={this.props.currentStep === this.props.steps.length - 1 ? "btn btn-success" : "btn btn-primary"}
-                    style={{ width: '80%' }}
+                <input type="button" class="btn stepButtonCls "                    
+                    style={{ width: '80%',"background-color":"rgb(255,200,0)" ,"color":"black"  }}
                     disabled={(!this.state.acknowledged)}
                     onClick={this.props.nextFunction} value={this.props.currentStep === this.props.steps.length - 1 ? "Submit" : "Go to Next Step "}
                 />
