@@ -1,3 +1,5 @@
+// @Author: Rashmi Chandy 
+// Feature: Job Posting Management - Add New Job
 const express = require('express');
 const router = express.Router();
 const JobPostionModel = require('../models/jobPositionSchema');

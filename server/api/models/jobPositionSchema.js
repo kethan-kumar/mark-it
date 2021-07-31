@@ -1,5 +1,5 @@
 // @Author: Rashmi Chandy 
-// Feature: Job Posting Management
+// Feature: Job Position Management
 
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
