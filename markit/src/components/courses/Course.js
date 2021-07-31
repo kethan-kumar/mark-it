@@ -146,10 +146,6 @@ const Course = () => {
                                 </Container>
                             ))}
                     </section>
-
-                    <footer className="footer-style">
-                        @Dalhousie University
-                    </footer>
                 </div>
             </div>
         </article>

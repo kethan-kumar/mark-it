@@ -4,6 +4,9 @@ import { useLocation } from 'react-router';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Axios from 'axios';
 import { Container, Col, Row } from 'react-bootstrap';
+import HiresManagement from '../hires-management/HiresManagement';
+import Collaborator from './Collaborator';
+import Alert from '@material-ui/lab/Alert';
 
 const CourseDetail = () => {
     const location = useLocation();
@@ -34,7 +37,6 @@ const CourseDetail = () => {
         }).then((response) => {
             setCollaboratorUserId(navigatedUserId);
             setCollaboratorCourseId(navigatedCourseId);
-            alert("Successfully joined");
         }, (error) => {
             console.log(error);
         });
@@ -46,7 +48,6 @@ const CourseDetail = () => {
             .then((response) => {
                 setCollaboratorUserId(undefined);
                 setCollaboratorCourseId(undefined);
-                alert("Successfully left");
             }, (error) => {
                 console.log(error);
             });
@@ -102,6 +103,14 @@ const CourseDetail = () => {
                     <Breadcrumb.Item href="#/courses">Courses</Breadcrumb.Item>
                     <Breadcrumb.Item href={"#/courses/" + id}>CSCI {navigatedCourseId} - {navigatedCourseName}</Breadcrumb.Item>
                 </Breadcrumb>
+                {collaboratorUserId === undefined && collaboratorCourseId === undefined ?
+                    <Alert variant="filled" severity="warning">
+                        Join the course to collaborate and manage new hires!
+                    </Alert> :
+                    <Alert variant="filled" severity="success">
+                        Yay! You joined the course!
+                    </Alert>
+                }
                 <Col md={{ span: 3, offset: 7 }}>
                     {collaboratorUserId === undefined && collaboratorCourseId === undefined
                         ? <button type="button" className="btn btn-success course-collaborator" onClick={handleCollaboratorJoin}>Join</button>
@@ -148,11 +157,14 @@ const CourseDetail = () => {
                 </div>
             </article>
             <article>
+                {/* <section>
+                    <Collaborator />
+                </section> */}
                 <section>
-                    
+                    <HiresManagement />
                 </section>
             </article>
-        </div>
+        </div >
     );
 }
 

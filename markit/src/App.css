@@ -54,7 +54,7 @@
 /*Author: Theresa */
 .side-bar {
   align-items: flex-end;
-  color: black;
+  color: white;
   flex-grow: 1;
   text-align: end;
 }
@@ -94,7 +94,7 @@
 }
 
 .title-header {
-  color: black;
+  color: white;
 }
 
 .card-style {
@@ -132,25 +132,28 @@
 
 .form-row {
   padding: 23px 0 17px 0;
+  color: white;
 }
 
 .error {
-  color: red;
+  color: orange;
   margin: 5px;
   font-size: 17px;
 }
 
 .header-course-detail {
-  padding: 19px 9px 9px 21px;
+  padding: 69px 9px 9px 21px;
   margin: 10px 20px 0px
 }
 
 .course-collaborator {
   float: right;
+  margin-top: 10px;
 }
 
 .course-button {
   margin: 0 41px;
+  margin-top: 10px;
 }
 
 .edit-field {
@@ -164,6 +167,10 @@
 
 .HM-container {
   margin-top: 77px;
-  color: black;
+  color: white;
   text-align: left !important;
+}
+
+.example-collapse-text{
+  color: white;
 }
