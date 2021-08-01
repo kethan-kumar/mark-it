@@ -84,9 +84,8 @@ function ResetPassword() {
 
     const handlePassword = (passWord) => {
         if (passWord) {
-            const regex =
-                /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[%$&!*@?])[A-Za-z\d@$!%*?&]{8,}$/;
-            setvalidPassword(regex.test(passWord));
+            const regex = /^(.{0,7}|[^0-9]*|[^A-Z]*|[^a-z]*|[a-zA-Z0-9]*)$/;
+            setvalidPassword(!regex.test(passWord));
         }
     };
 
