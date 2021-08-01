@@ -28,13 +28,13 @@ const NavigationBar = () => {
         }
         setSuccess(false);
     };
+
     const increment = () => {
         if (sessionStorage.getItem('markit-email') === "") {
             setNumber(number + 1);
             setdisplay(false);
         }
         else {
-
             setdisplay(true);
         }
     }
@@ -44,6 +44,7 @@ const NavigationBar = () => {
             setdisplay(false);
             sessionStorage.setItem('markit-email', "");
             setSuccess(true);
+            increment();
         }
     }
 
@@ -65,7 +66,7 @@ const NavigationBar = () => {
                             <Nav className="ml-auto">
                                 <Nav.Link href="/">HOME</Nav.Link>
                                 <Nav.Link href="/#/courses">COURSES</Nav.Link>
-                                <Nav.Link href={"/#/myApplication?email="+sessionStorage.getItem('markit-email') }>MY APPLICATION</Nav.Link>
+                                <Nav.Link href={"/#/myApplication?email=" + sessionStorage.getItem('markit-email')}>MY APPLICATION</Nav.Link>
                                 <Nav.Link href="#/hiring-management">HIRING</Nav.Link>
                                 <Nav.Link href="#onboarding">ONBOARDING</Nav.Link>
                                 <Nav.Link href="/#/profile">PROFILE</Nav.Link>

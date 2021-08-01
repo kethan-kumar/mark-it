@@ -53,7 +53,7 @@ function Login() {
   const [email, setemail] = useState("");
   const [validEmail, setvalidEmail] = useState(true);
   const [validTnC, setvalidTnC] = useState(true);
-  const [tnc, settnc] = useState(false);
+  const [tnc, settnc] = useState(true);
   const [open, setOpen] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
   const user_authentication_api = "/api/login/user-auth";
@@ -181,31 +181,6 @@ function Login() {
                   </Link>
                 </Grid>
               </div>
-              <div>
-                <Grid align="center">
-                  <Box fontSize={12} m={1}>
-                    <Checkbox
-                      name="tnc"
-                      checked={tnc}
-                      onChange={handleInput}
-                      color="primary"
-                    ></Checkbox>
-                    <Link
-                      variant="body1"
-                      href="https://3912.cupe.ca/documents/collective-agreements/"
-                    >
-                      Agree to Terms and Conditions.
-                    </Link>
-                  </Box>
-                </Grid>
-              </div>
-              <p
-                className={validTnC ? "hidden" : "text-danger p-tag-alert"}
-                style={{ color: "red", "font-size": "x-small" }}
-              >
-                {" "}
-                Agree to the terms and conditions to login!
-              </p>
               <div>
                 <Grid align="center">
                   <Button
