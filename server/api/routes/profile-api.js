@@ -13,7 +13,7 @@ router.put('/update-user', (req, res) => {
     if (req.body.password) {
         req.body.password = crypto.createHash("sha256").update(req.body.password, "binary").digest("hex");
     }
-    const filter = req.headers.email;
+    const filter = { 'email': req.headers.email };
     const update = req.body;
     console.log(filter, update);
     //Update user profile
