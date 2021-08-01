@@ -1,3 +1,5 @@
+// @Author: Rashmi Chandy 
+// Feature: Job Posting Management - Get,Add,Update,Delete New Job
 const express = require('express');
 const router = express.Router();
 const JobPostingModel = require('../models/jobPostingSchema');

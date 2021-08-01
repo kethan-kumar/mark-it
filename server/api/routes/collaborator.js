@@ -41,6 +41,44 @@ router.get('/:userId/:courseId', (req, res) => {
     }
 });
 
+//Get all collaborators
+router.get('/:courseId', (req, res) => {
+    const courseId = req.params.courseId;
+    try {
+        CollaboratorModel.find({ courseId: courseId }).then((result) => {
+            if (result && result.length > 0) {
+                return res.status(200).json(
+                    {
+                        success: true,
+                        message: "Collaborators data retrieved",
+                        collaborators: result[0]
+                    })
+            }
+            return res.status(200).json(
+                {
+                    success: false,
+                    message: "No Collaborators found",
+                    collaborator: ""
+                })
+
+        }).catch((error) => {
+            return res.status(500).json(
+                {
+                    success: false,
+                    message: "Internal Server Error occurred while retrieving collaborator data for course",
+                    error: error
+                })
+        });
+    }
+    catch (error) {
+        return res.status(500).json(
+            {
+                success: false,
+                message: "Internal Server Error occurred while retrieving collaborator data",
+            })
+    }
+});
+
 
 // Join a course 
 router.post('/join', (req, res) => {

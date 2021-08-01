@@ -43,7 +43,7 @@ const Course = () => {
             pathname: "/courses/" + id,
             state: {
                 course: c,
-                user: "dsylva.marie7@gmail.com"
+                user: sessionStorage.getItem('markit-email')
             }
         });
     };
@@ -91,7 +91,7 @@ const Course = () => {
                 <br />
                 <div className="component-body col">
                     <header className="title-header">
-                        <h2>Hello Laura, Welcome back!</h2>
+                        <h2>Hello {sessionStorage.getItem('markit-email')}, Welcome back!</h2>
                     </header>
                     <button className="click-icon" onClick={() => setOpen(!open)} aria-controls="example-collapse-text"
                         aria-expanded={open}> <MdPlaylistAdd /></button>
@@ -146,10 +146,6 @@ const Course = () => {
                                 </Container>
                             ))}
                     </section>
-
-                    <footer className="footer-style">
-                        @Dalhousie University
-                    </footer>
                 </div>
             </div>
         </article>

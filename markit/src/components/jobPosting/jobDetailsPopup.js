@@ -1,3 +1,5 @@
+// @Author: Rashmi Chandy 
+// Feature: View Job Posting Detail
 import {React,useState,useEffect} from 'react';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
