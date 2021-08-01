@@ -1,12 +1,11 @@
 import "./App.css";
-import { React, useState } from "react";
+import { React } from "react";
 import Login from "./components/user-profile/Login";
 import Register from "./components/user-profile/Register";
 import Profile from "./components/user-profile/Profile";
 import ResetPassword from "./components/user-profile/ResetPassword";
 import Home from "./components/pages/Home";
-import { Switch, Route, Redirect } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
+import { Switch, Route } from "react-router-dom";
 import JobApplicationStepper from "./components/jobApplication/JobApplicationStepper";
 import ApplicationTabs from "./components/myApplication/tab"
 import NavigationBar from './navbar';
