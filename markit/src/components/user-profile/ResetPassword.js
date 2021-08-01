@@ -256,9 +256,9 @@ function ResetPassword() {
                                     </Grid>
                                 </div>
                                 <div>
-                                    Want to go back to login?
-                                    <Link to="/login">
-                                        <span> Sign in!</span>
+                                    Want to go home?
+                                    <Link to="/home">
+                                        <span> Click here!</span>
                                     </Link>
                                 </div>
                             </form>
@@ -343,9 +343,9 @@ function ResetPassword() {
                                     </Grid>
                                 </div>
                                 <div>
-                                    Want to go back to login?
-                                    <Link to="/login">
-                                        <span> Sign in!</span>
+                                    Want to go home?
+                                    <Link to="/home">
+                                        <span> Click here!</span>
                                     </Link>
                                 </div>
                             </form>
@@ -378,8 +378,8 @@ function ResetPassword() {
                                 </Snackbar>
                             </div>
                             <div>
-                                Want to go back to login?
-                                <Link to="/login">
+                                Want to go home?
+                                <Link to="/home">
                                     <span> Click here!</span>
                                 </Link>
                             </div>
@@ -424,7 +424,7 @@ function ResetPassword() {
                                         id="otp"
                                         value={otp}
                                         error={!validOTP}
-                                        helperText={validOTP ? "" : "Enter only numbers."}
+                                        helperText={validOTP ? "" : "Only 6 digits allowed."}
                                         onChange={handleInput}
                                     ></TextField>
                                 </div>
@@ -451,9 +451,9 @@ function ResetPassword() {
                                     </Grid>
                                 </div>
                                 <div>
-                                    Want to go back to login?
-                                    <Link to="/login">
-                                        <span> Sign in!</span>
+                                    Want to go home?
+                                    <Link to="/home">
+                                        <span> Click here!</span>
                                     </Link>
                                 </div>
                             </form>
