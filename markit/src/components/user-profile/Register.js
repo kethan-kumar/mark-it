@@ -158,7 +158,7 @@ function Register() {
     setOpen(false);
     async function authenticateUser() {
       await axios.post(user_registration_api,
-        {}, { headers: { 'firstname': firstname, 'lastname': lastname, 'email': email, 'password': password } })
+        {}, { headers: { 'firstname': firstname, 'lastname': lastname, 'email': email, 'password': password, 'otp': '000000' } })
         .then((response) => {
           console.log(response);
           if (response.status === 201) {

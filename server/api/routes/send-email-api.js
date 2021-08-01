@@ -43,9 +43,10 @@ router.post('/sendmail', (req, res) => {
                 });
                 ////////////////////////////////////////////////////////////////
                 console.log('Profile update API');
-                const filter = req.body.email;
+                const filter = { 'email': req.body.email };
                 const update = { 'otp': newOTP };
-
+                console.log(filter);
+                console.log(update);
                 //Update user profile
                 SendEmail.findOneAndUpdate(filter, update, { new: true })
                     .then((results) => {
