@@ -19,7 +19,7 @@
 
 ## Getting Started
 
-Clone project from repository https://github.com/csci5709-web-dev/Group2_MarkIT.git
+Clone project from repository https://github.com/kethan-kumar/mark-it.git
 
 ### Prerequisites
 
