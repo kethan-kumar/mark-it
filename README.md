@@ -43,7 +43,7 @@ Branch deployed: main
 
 To manually deploy application to heroku 
 * Commit changes and push to repository 
-* set git remote heroku to https://github.com/csci5709-web-dev/Group2_MarkIT.git
+* set git remote heroku to https://github.com/kethan-kumar/mark-it.git
 * git push heroku main
 
 ## Built With
