@@ -1,6 +1,7 @@
 # Advanced Web Services (CSCI5709)
 
 ### Our Application: [MarkIT](https://dal-markit.herokuapp.com/)
+* As I hosted the application on heroku (free hosting), initially it might take a couple of minutes to load. Appreciate your patience.
 
 # Group Project
 
